@@ -14,8 +14,8 @@ const items = [
     title: "Static portfolio website",
     description: "a static portfolio website using html css and javascript.",
     img: "https://picsum.photos/seed/ana/800/500",
-    live: "",
-    code: "https://github.com/yourname/analytics",
+    live: "https://static-portfolio-sigma.vercel.app/",
+    code: "https://github.com/DawitBK/Static-Portfolio",
   },
   {
     title: "Figma Design & Publish",
