@@ -21,10 +21,6 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-ink-800 bg-slate-50 dark:bg-ink-850 text-slate-600 dark:text-gray-400 font-medium text-xs mb-6">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        Open to select freelance & consulting work
-                    </span>
                     <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight tracking-tight text-slate-900 dark:text-white">
                         {name}
                     </h1>
