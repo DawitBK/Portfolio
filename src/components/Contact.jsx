@@ -5,7 +5,7 @@ import { resumeData } from '../data/resume';
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
+        <section id="contact" className="py-24 bg-slate-50 dark:bg-ink-900/60 relative overflow-hidden">
             {/* Background gradients */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 dark:opacity-20 pointer-events-none">
                 <div className="absolute bottom-0 left-0 w-72 h-72 bg-brand-600 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-screen"></div>
@@ -19,6 +19,7 @@ const Contact = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
+                    <p className="section-kicker">06 / Contact</p>
                     <h2 className="text-3xl md:text-5xl font-bold mb-8">Let's Work <span className="text-gradient">Together</span></h2>
                     <p className="text-slate-600 dark:text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
                         Currently building out enterprise platforms full-time, and open to select freelance,
@@ -26,11 +27,11 @@ const Contact = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center gap-8 mb-16">
-                        <a href={`mailto:${resumeData.personalInfo.email}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-brand-500 transition-colors group">
+                        <a href={`mailto:${resumeData.personalInfo.email}`} className="flex items-center justify-center gap-3 px-8 py-4 glass-card rounded-xl hover:border-brand-500/50 hover:shadow-glow transition-all group">
                             <Mail className="text-brand-500 group-hover:scale-110 transition-transform" />
                             <span className="text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{resumeData.personalInfo.email}</span>
                         </a>
-                        <a href={`tel:${resumeData.personalInfo.phone}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-emerald-500 transition-colors group">
+                        <a href={`tel:${resumeData.personalInfo.phone}`} className="flex items-center justify-center gap-3 px-8 py-4 glass-card rounded-xl hover:border-emerald-500/50 hover:shadow-glow transition-all group">
                             <Phone className="text-emerald-500 group-hover:scale-110 transition-transform" />
                             <span className="text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{resumeData.personalInfo.phone}</span>
                         </a>

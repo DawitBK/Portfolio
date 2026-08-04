@@ -4,7 +4,7 @@ import { resumeData } from '../data/resume';
 
 const Experience = () => {
     return (
-        <section id="experience" className="py-20 bg-slate-50 dark:bg-slate-900/50">
+        <section id="experience" className="py-24 bg-white dark:bg-ink-950">
             <div className="max-w-7xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -12,27 +12,31 @@ const Experience = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
+                    <p className="section-kicker">03 / Experience</p>
                     <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">Professional <span className="text-gradient">Experience</span></h2>
 
                     <div className="space-y-12 relative max-w-4xl mx-auto">
                         {/* Vertical Line */}
-                        <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800 md:-translate-x-1/2"></div>
+                        <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-white/10 md:-translate-x-1/2"></div>
 
                         {resumeData.experience.map((exp, index) => (
                             <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
 
                                 {/* Timeline Dot */}
-                                <div className={`absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full border-4 border-slate-50 dark:border-slate-900 md:-translate-x-1/2 z-10 translate-y-1.5 md:translate-y-1 ${exp.current ? 'bg-emerald-500' : 'bg-brand-500'}`}></div>
+                                <div className={`absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full border-4 border-white dark:border-ink-950 md:-translate-x-1/2 z-10 translate-y-1.5 md:translate-y-1 ${exp.current ? 'bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.2)]' : 'bg-brand-500'}`}></div>
 
                                 {/* Content Card */}
                                 <div className="w-full pl-12 md:w-1/2 md:px-12">
-                                    <div className={`p-6 bg-white dark:bg-slate-950 border rounded-xl transition-all group ${exp.current ? 'border-emerald-500/40 hover:border-emerald-500/70 shadow-lg shadow-emerald-500/5' : 'border-slate-200 dark:border-slate-800 hover:border-brand-500/30'} ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                                    <motion.div
+                                        whileHover={{ y: -3 }}
+                                        className={`p-6 glass-card rounded-xl transition-shadow ${exp.current ? 'ring-1 ring-emerald-500/30 hover:shadow-[0_8px_30px_-8px_rgba(16,185,129,0.35)]' : 'hover:shadow-glow'} ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}
+                                    >
                                         {exp.current && (
                                             <span className="inline-block mb-2 px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                                                 Current
                                             </span>
                                         )}
-                                        <h3 className="text-xl font-bold text-slate-800 dark:text-gray-200 group-hover:text-brand-500 dark:group-hover:text-brand-400 transition-colors">{exp.title}</h3>
+                                        <h3 className="text-xl font-bold text-slate-800 dark:text-gray-200">{exp.title}</h3>
                                         <h4 className="text-violet-600 dark:text-violet-400 font-medium mb-1">{exp.company}</h4>
                                         <p className="text-sm text-slate-500 dark:text-gray-500 mb-4">{exp.period} {exp.location ? `| ${exp.location}` : ''}</p>
                                         {exp.description && (
@@ -47,7 +51,7 @@ const Experience = () => {
                                                 ))}
                                             </ul>
                                         )}
-                                    </div>
+                                    </motion.div>
                                 </div>
 
                                 {/* Empty space for alternate side */}
