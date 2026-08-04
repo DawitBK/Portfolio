@@ -5,44 +5,38 @@ import { resumeData } from '../data/resume';
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-24 bg-slate-50 dark:bg-ink-900/60 relative overflow-hidden">
-            {/* Background gradients */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 dark:opacity-20 pointer-events-none">
-                <div className="absolute bottom-0 left-0 w-72 h-72 bg-brand-600 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-screen"></div>
-                <div className="absolute bottom-0 right-0 w-72 h-72 bg-fuchsia-600 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-screen"></div>
-            </div>
-
-            <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <section id="contact" className="py-24 bg-white dark:bg-ink-950">
+            <div className="max-w-4xl mx-auto px-6 text-center">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.6 }}
                 >
                     <p className="section-kicker">06 / Contact</p>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-8">Let's Work <span className="text-gradient">Together</span></h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-8 text-slate-900 dark:text-white">Let's Work Together</h2>
                     <p className="text-slate-600 dark:text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
                         Currently building out enterprise platforms full-time, and open to select freelance,
-                        consulting, and collaboration opportunities in full-stack, DevOps/platform engineering, and applied AI.
+                        consulting, and collaboration opportunities in full-stack, cloud/DevOps engineering, and applied AI.
                     </p>
 
-                    <div className="flex flex-col md:flex-row justify-center gap-8 mb-16">
-                        <a href={`mailto:${resumeData.personalInfo.email}`} className="flex items-center justify-center gap-3 px-8 py-4 glass-card rounded-xl hover:border-brand-500/50 hover:shadow-glow transition-all group">
-                            <Mail className="text-brand-500 group-hover:scale-110 transition-transform" />
+                    <div className="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                        <a href={`mailto:${resumeData.personalInfo.email}`} className="flex items-center justify-center gap-3 px-8 py-4 card rounded-xl hover:border-brand-500/50 transition-colors group">
+                            <Mail size={20} className="text-brand-500" />
                             <span className="text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{resumeData.personalInfo.email}</span>
                         </a>
-                        <a href={`tel:${resumeData.personalInfo.phone}`} className="flex items-center justify-center gap-3 px-8 py-4 glass-card rounded-xl hover:border-emerald-500/50 hover:shadow-glow transition-all group">
-                            <Phone className="text-emerald-500 group-hover:scale-110 transition-transform" />
+                        <a href={`tel:${resumeData.personalInfo.phone}`} className="flex items-center justify-center gap-3 px-8 py-4 card rounded-xl hover:border-brand-500/50 transition-colors group">
+                            <Phone size={20} className="text-brand-500" />
                             <span className="text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{resumeData.personalInfo.phone}</span>
                         </a>
                     </div>
 
                     <div className="flex justify-center gap-8">
                         <a href={resumeData.personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            <Github size={32} />
+                            <Github size={28} />
                         </a>
                         <a href={resumeData.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 dark:text-gray-500 hover:text-brand-500 transition-colors">
-                            <Linkedin size={32} />
+                            <Linkedin size={28} />
                         </a>
                     </div>
                 </motion.div>

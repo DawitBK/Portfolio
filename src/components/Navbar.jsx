@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
         <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 dark:bg-ink-950/80 backdrop-blur-md py-4 shadow-lg shadow-slate-900/5' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <Link to="hero" smooth={true} duration={500} className="cursor-pointer text-2xl font-bold text-gradient">
+                <Link to="hero" smooth={true} duration={500} className="cursor-pointer text-2xl font-bold text-brand-600 dark:text-brand-400">
                     DBK.
                 </Link>
 
@@ -50,7 +50,7 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <div className="flex items-center gap-4 pl-2 border-l border-slate-200 dark:border-white/10">
+                    <div className="flex items-center gap-4 pl-2 border-l border-slate-200 dark:border-ink-800">
                         <a
                             href={resumeData.personalInfo.github}
                             target="_blank"
@@ -81,11 +81,11 @@ const Navbar = () => {
             </div>
 
             {/* Scroll progress */}
-            <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-brand-500 via-violet-500 to-fuchsia-500 transition-[width] duration-150" style={{ width: `${progress}%` }}></div>
+            <div className="absolute bottom-0 left-0 h-[2px] bg-brand-500 transition-[width] duration-150" style={{ width: `${progress}%` }}></div>
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-ink-900/95 backdrop-blur-lg border-t border-slate-200 dark:border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+                <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-ink-850 border-t border-slate-200 dark:border-ink-800 p-6 flex flex-col space-y-4 shadow-lg">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
@@ -99,7 +99,7 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <div className="flex space-x-6 mt-4 pt-4 border-t border-slate-200 dark:border-white/10">
+                    <div className="flex space-x-6 mt-4 pt-4 border-t border-slate-200 dark:border-ink-800">
                         <a href={resumeData.personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"><Github /></a>
                         <a href={resumeData.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"><Linkedin /></a>
                         <a href={`mailto:${resumeData.personalInfo.email}`} className="text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"><Mail /></a>

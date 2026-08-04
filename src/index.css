@@ -11,7 +11,7 @@
     @apply bg-white text-slate-900 dark:bg-ink-950 dark:text-white font-sans overflow-x-hidden transition-colors duration-300;
   }
   ::selection {
-    @apply bg-brand-500/30;
+    @apply bg-brand-500/25;
   }
 }
 
@@ -23,27 +23,19 @@
     background: transparent;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
-  }
-
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-violet-500 to-fuchsia-500;
+    @apply bg-slate-300 dark:bg-ink-800 rounded-full;
   }
 
   .section-kicker {
-    @apply flex items-center justify-center gap-3 text-xs font-mono tracking-[0.2em] uppercase text-brand-500 dark:text-brand-400 mb-4;
+    @apply flex items-center justify-center gap-3 text-xs font-mono tracking-[0.2em] uppercase text-brand-600 dark:text-brand-400 mb-4;
   }
   .section-kicker::before,
   .section-kicker::after {
     content: '';
-    @apply h-px w-8 bg-brand-500/40;
+    @apply h-px w-8 bg-slate-300 dark:bg-ink-800;
   }
 
-  .glass-card {
-    @apply bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 dark:backdrop-blur-sm;
-  }
-
-  .grain-overlay {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  .card {
+    @apply bg-white dark:bg-ink-850 border border-slate-200 dark:border-ink-800 shadow-sm dark:shadow-none;
   }
 }
