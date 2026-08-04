@@ -4,7 +4,7 @@ import { resumeData } from '../data/resume';
 
 const About = () => {
     return (
-        <section id="about" className="py-20 bg-slate-950 relative">
+        <section id="about" className="py-20 bg-white dark:bg-slate-950 relative">
             <div className="max-w-7xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -12,45 +12,20 @@ const About = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">About <span className="text-blue-500">Me</span></h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">About <span className="text-gradient">Me</span></h2>
 
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                                {resumeData.personalInfo.summary}
-                            </p>
-                            <div className="flex gap-4">
-                                <div className="text-center p-4 bg-slate-900 rounded-lg border border-slate-800 w-1/3">
-                                    <h3 className="text-2xl font-bold text-blue-400">2+</h3>
-                                    <p className="text-sm text-gray-500">Years Experience</p>
-                                </div>
-                                <div className="text-center p-4 bg-slate-900 rounded-lg border border-slate-800 w-1/3">
-                                    <h3 className="text-2xl font-bold text-purple-400">10+</h3>
-                                    <p className="text-sm text-gray-500">Projects Completed</p>
-                                </div>
-                                <div className="text-center p-4 bg-slate-900 rounded-lg border border-slate-800 w-1/3">
-                                    <h3 className="text-2xl font-bold text-green-400">2</h3>
-                                    <p className="text-sm text-gray-500">Certifications</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="grid md:grid-cols-5 gap-12 items-center max-w-5xl mx-auto">
+                        <p className="md:col-span-3 text-slate-600 dark:text-gray-400 text-lg leading-relaxed">
+                            {resumeData.personalInfo.summary}
+                        </p>
 
-                        <div>
-                            <h3 className="text-xl font-semibold mb-6 text-gray-200">Technical Skills</h3>
-                            <div className="space-y-6">
-                                {Object.entries(resumeData.skills).map(([category, items]) => (
-                                    <div key={category}>
-                                        <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{category}</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {items.map(skill => (
-                                                <span key={skill} className="px-3 py-1 bg-slate-900 text-gray-300 text-sm rounded-full border border-slate-800 hover:border-blue-500/50 transition-colors cursor-default">
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="md:col-span-2 grid grid-cols-2 gap-4">
+                            {resumeData.stats.map((stat) => (
+                                <div key={stat.label} className="text-center p-5 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-gradient">{stat.value}</h3>
+                                    <p className="text-xs md:text-sm text-slate-500 dark:text-gray-500 mt-1">{stat.label}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </motion.div>
