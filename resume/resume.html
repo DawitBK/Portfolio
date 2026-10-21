@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dawit Bayou Kassie - Resume</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 9.6pt; line-height: 1.34; color: #1b1b1b; margin: 0; }
+  h1 { font-size: 19pt; margin: 0; color: #1f3864; text-align: center; }
+  .role { text-align: center; font-weight: 700; margin-top: 2px; font-size: 10.5pt; }
+  .contact { text-align: center; color: #555; margin-top: 2px; }
+  h2 { font-size: 10.5pt; color: #1f3864; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid #1f3864; padding-bottom: 1px; margin: 11px 0 5px; }
+  .job { margin-top: 6px; break-inside: avoid-page; }
+  .head { display: flex; justify-content: space-between; font-weight: 700; }
+  .head .org { color: #1f3864; font-weight: 700; }
+  .meta { font-style: italic; color: #555; }
+  ul { margin: 2px 0 0 0; padding-left: 15px; }
+  li { margin: 1px 0; }
+  .tech { font-style: italic; color: #444; }
+  .skills p { margin: 2px 0; }
+  .skills b { color: #1f3864; }
+  .proj { margin-top: 5px; break-inside: avoid; }
+  .proj .title { font-weight: 700; }
+</style>
+</head>
+<body>
+<h1>Dawit Bayou Kassie</h1>
+<div class="role">Solutions Architect, Full-Stack, Cloud &amp; DevOps Engineer</div>
+<div class="contact">Addis Ababa, Ethiopia &middot; +251 921 640 101 &middot; dawitbk01@gmail.com<br>linkedin.com/in/dawit-b-kassie &middot; github.com/DawitBK</div>
+
+<h2>Professional summary</h2>
+<p style="margin:0">Solutions architect and full-stack engineer with three-plus years building production systems: multi-tenant SaaS, enterprise internal platforms and centralized identity. Strongest in Node.js, NestJS, TypeScript and PostgreSQL. Known for making correctness checkable: rules enforced in the database, a test that proves each guarantee, and runbooks an operations team can follow. Owns projects end to end, from BRD/FRS/TDD authorship and architecture through build, deployment and verification, directing a mix of engineers and AI coding agents. BSc in Electrical &amp; Computer Engineering.</p>
+
+<h2>Technical skills</h2>
+<div class="skills">
+<p><b>Backend &amp; APIs:</b> Node.js, NestJS, Express, TypeScript, REST and OpenAPI contracts (Zod), WebSockets; Python and Java (working knowledge)</p>
+<p><b>Architecture:</b> multi-tenant SaaS, row-level security, event-driven design, transactional outbox, Domain-Driven and Clean Architecture; BullMQ, Redis, Kafka, RabbitMQ</p>
+<p><b>Identity &amp; security:</b> OpenID Connect and OAuth 2.0 (authorization code + PKCE, back-channel logout), SSO, RBAC, JWT, signed licences and releases, hash-chained audit logs, AES-256-GCM, OWASP practices; Keycloak, Authentik, Zitadel evaluated</p>
+<p><b>Frontend:</b> React, Next.js, TypeScript, Tailwind CSS, Zustand, Redux</p>
+<p><b>Data:</b> PostgreSQL (triggers, RLS, constraints, migrations), Drizzle, Prisma, TypeORM, Sequelize, MySQL, MongoDB, Redis, Meilisearch, pgvector</p>
+<p><b>Cloud &amp; DevOps:</b> Docker, GitHub Actions, GitLab CI/CD, Nginx and Apache reverse proxies, Linux and Windows Server operations, backup and restore drills, Terraform, Kubernetes, AWS, Azure, Prometheus, Grafana</p>
+<p><b>Applied AI:</b> LLM integration, RAG and semantic search, agentic system design, AI-assisted development (Claude, Codex, Cursor) with proof-based verification</p>
+</div>
+
+<h2>Professional experience</h2>
+
+<div class="job">
+<div class="head"><span>Solutions Architect &amp; Full Stack Engineer &nbsp;<span class="org">Kerchanshe Group</span></span><span class="meta">2026 &ndash; Present &middot; Addis Ababa</span></div>
+<ul>
+<li>Lead architecture and delivery of the group's internal platform: a document and records system (EDAMS), a guest management system, a retail ERP and a central single sign-on service, coordinating engineers and AI coding agents.</li>
+<li>Built the single sign-on provider as a custom OpenID Connect service: authorization code with PKCE, signed tokens, Active Directory integration, an admin console, an application launcher, and back-channel logout that ends a person's sessions in every connected system when they sign out or are disabled.</li>
+<li>Designed licensing and release security for the platform: offline-signed licences that systems verify without calling home (including a rule that a system tied to SSO ends with SSO), signed releases, a tamper watcher, and owner-only operations kept out of any agent's permissions.</li>
+<li>Replaced ad-hoc deployments with one repeatable release process: preflight checks, settings applied at release time with automatic rollback, backups, and step-by-step runbooks for the operations team.</li>
+<li>Run a verification discipline: more than 3,000 automated tests across the three systems (SSO 831, EDAMS 1,639, GMS 605) with generated status reports checked in CI, and independent code reviews whose findings are fixed before release. After catching AI agents falsely reporting finished work, every task requires live request/response and SQL output as proof.</li>
+<li>Own architecture documentation, requirements specifications, executive reporting and internal training material.</li>
+</ul>
+</div>
+
+<div class="job">
+<div class="head"><span>Web Developer &nbsp;<span class="org">Edge Communication Technologies P.L.C</span></span><span class="meta">Sep 2025 &ndash; Oct 2025 &middot; Addis Ababa</span></div>
+<ul>
+<li>Built and maintained responsive corporate platforms and internal business applications for public-facing and operational use.</li>
+<li>Improved frontend consistency, deployment workflow and page load times by standardizing the component architecture.</li>
+<li>Scoped requirements with technical and operational teams and delivered production-ready systems on tight timelines.</li>
+</ul>
+</div>
+
+<div class="job">
+<div class="head"><span>Full Stack, Cloud &amp; DevOps Engineer &nbsp;<span class="org">Freelance</span></span><span class="meta">Jan 2023 &ndash; 2025 &middot; Remote</span></div>
+<ul>
+<li>Designed, built and deployed full-stack applications for clients in several industries (MERN and PERN), from scoping to production launch.</li>
+<li>Built backend APIs, authentication and database schemas around each client's real read and write patterns.</li>
+<li>Set up container and CI/CD pipelines with Docker and GitHub Actions, and managed AWS and Azure deployments including networking, storage, compute and IAM.</li>
+</ul>
+</div>
+
+<h2>Selected projects</h2>
+
+<div class="proj"><div class="title">Open-source rebuilds: Retail OS, JobPilot, Martronics, Library Management &nbsp;<span class="meta" style="font-weight:400">github.com/DawitBK</span></div>
+<div class="tech">NestJS 12, Drizzle, PostgreSQL 18, Zod/OpenAPI, Next.js 16, Vitest, Turborepo</div>
+<ul>
+<li><b>Retail OS:</b> point of sale, weighted-average inventory and double-entry accounting where the stock and the books cannot disagree: balanced journals enforced by a deferred database trigger, immutable posted history, money as integer minor units, and tests for concurrent sales and credit limits.</li>
+<li><b>JobPilot:</b> multi-tenant job-search platform with row-level security as the isolation boundary, an 18-state application machine in which only a person can approve a submission, a hash-chained audit trail, and SSRF-safe feed discovery.</li>
+<li><b>Martronics and Library Management:</b> rebuilds of two earlier apps with rotating refresh tokens and reuse detection, optimistic concurrency, idempotent writes, a transactional outbox and an OpenAPI contract. All four apps sign in through OpenID Connect with back-channel logout.</li>
+</ul></div>
+
+<div class="proj"><div class="title">MOS on Odoo, and developer workspace tooling</div>
+<div class="tech">Python, Odoo 20, OpenID Connect, Node.js</div>
+<ul>
+<li>Custom Odoo addons that add OpenID Connect sign-in (PKCE, account binding, back-channel logout) without changing Odoo itself; a manifest-driven workspace tool that audits a developer machine and cleans it up with an undo.</li>
+</ul></div>
+
+<div class="proj"><div class="title">GMS: Multi-Tenant Guest Management Platform &nbsp;<span class="meta" style="font-weight:400">employer system</span></div>
+<div class="tech">Node.js, Next.js, TypeScript, PostgreSQL, Redis, BullMQ, WebSockets, Docker</div>
+<ul>
+<li>Architected a multi-tenant visitor platform with seven roles, door-access hardware integration, OTP two-factor sign-in, QR/PIN credentials, ID scanning with watchlist screening, and an approval and escalation workflow with real-time delivery.</li>
+<li>Carried it through QA and UAT, trained internal IT staff, and took it live on the company's own server behind an Apache reverse proxy.</li>
+</ul></div>
+
+<div class="proj"><div class="title">EDAMS: Document &amp; Archive Management System &nbsp;<span class="meta" style="font-weight:400">employer system</span></div>
+<div class="tech">NestJS, PostgreSQL, MinIO, Redis, BullMQ, Meilisearch, pgvector, RAG</div>
+<ul>
+<li>Designed natural-language retrieval over large document sets (embeddings, pgvector, LLM summaries) and the RBAC and audit layer: 29 permissions across six roles, HMAC-chained logs, AES-256-GCM at rest, e-signatures, legal hold and retention scheduling.</li>
+</ul></div>
+
+<h2>Education &amp; certifications</h2>
+<div><i>BSc in Electrical &amp; Computer Engineering:</i> Addis Ababa Institute of Technology, 2022 &nbsp;&middot;&nbsp; <i>Full Stack &amp; DevOps Engineer Certification:</i> Addis Ababa University, 2025</div>
+<div><i>Languages:</i> English (fluent), Amharic (native)</div>
+</body>
+</html>

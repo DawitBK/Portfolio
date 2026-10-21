@@ -9,13 +9,13 @@ export const resumeData = {
         linkedin: "https://www.linkedin.com/in/dawit-b-kassie",
         github: "https://github.com/DawitBK",
         languages: "English (Fluent) · Amharic (Native)",
-        summary: "Senior software engineer with three-plus years of experience designing and building production systems, from multi-tenant SaaS platforms to enterprise-grade internal tools and centralized identity infrastructure. Currently leads architecture-level design and delivery for a multi-sector conglomerate's internal platform ecosystem, coordinating a mix of engineers and AI coding agents. Strongest in Node.js, NestJS, Express, and TypeScript, and comfortable owning a project end to end, from requirements gathering and BRD/FRS/TDD authorship through architecture, implementation, deployment, and verification."
+        summary: "Senior software engineer with three-plus years of experience designing and building production systems, from multi-tenant SaaS platforms to enterprise-grade internal tools and centralized identity infrastructure. Currently leads architecture-level design and delivery for a multi-sector conglomerate's internal platform ecosystem, coordinating a mix of engineers and AI coding agents. Strongest in Node.js, NestJS, TypeScript, and PostgreSQL, and known for making correctness checkable: rules enforced in the database, a test that proves each guarantee, and runbooks an operations team can follow. Comfortable owning a project end to end, from BRD/FRS/TDD authorship through architecture, implementation, deployment, and verification."
     },
     stats: [
         { label: "Years of Experience", value: "3+" },
         { label: "Enterprise Platforms Built", value: "4" },
-        { label: "Personal Projects", value: "5+" },
-        { label: "Certifications", value: "2" },
+        { label: "Automated Tests Written", value: "3,000+" },
+        { label: "Open-Source Projects", value: "8" },
     ],
     skills: {
         backend: ["Node.js", "NestJS", "Express.js", "TypeScript", "JavaScript (ES6+)", "REST & GraphQL API design", "WebSockets / Socket.IO", "Python (Django, FastAPI)", "Java (Spring Boot)"],
@@ -47,9 +47,10 @@ export const resumeData = {
             description: "Leads architecture and engineering for enterprise-wide internal platforms supporting operations across a large diversified conglomerate, spanning multiple business units and thousands of users.",
             highlights: [
                 "Owns architecture and delivery across several enterprise projects, including a document and archive management system, a guest management platform, a retail ERP system, and centralized SSO infrastructure, coordinating a mix of engineers and AI coding agents.",
-                "Architects centralized identity and access management infrastructure, evaluating providers including Keycloak, Authentik, Zitadel, and a custom OIDC build against existing Active Directory infrastructure.",
-                "Introduced the verification discipline the team now runs on: every task requires live HTTP request/response and SQL output as proof before it is marked done.",
-                "Established CI/CD pipelines, containerized deployment environments, and infrastructure automation practices that reduce manual release overhead and improve deployment reliability.",
+                "Built the single sign-on provider as a custom OpenID Connect service (authorization code with PKCE, signed tokens, Active Directory integration, admin console, application launcher), with back-channel logout that ends a person's sessions in every connected system when they sign out or are disabled.",
+                "Designed licensing and release security: offline-signed licences that systems verify without calling home, signed releases, a tamper watcher, and owner-only operations kept out of any agent's permissions.",
+                "Replaced ad-hoc deployments with one repeatable release process: preflight checks, settings applied at release time with automatic rollback, backups, and step-by-step runbooks for the operations team.",
+                "Runs the verification discipline the team works on: more than 3,000 automated tests across the three systems, generated status reports checked in CI, independent code reviews whose findings are fixed before release, and live HTTP request/response and SQL output as proof before any task is marked done.",
                 "Owns architecture documentation, requirements specs, and executive reporting: BRDs, FRS, TDDs, CEO/CTO-facing presentations, and internal training material."
             ]
         },
@@ -94,12 +95,12 @@ export const resumeData = {
             {
                 title: "Enterprise Multi-Tenant Guest Management SaaS Platform",
                 description: "A multi-tenant guest and visitor management platform built from the ground up as isolated microservices, currently the only one of these systems live in production.",
-                tech: ["NestJS", "Next.js", "TypeScript", "PostgreSQL", "Redis", "BullMQ", "Docker", "Kubernetes", "WebSockets", "AWS"],
+                tech: ["Node.js", "Next.js", "TypeScript", "PostgreSQL", "Redis", "BullMQ", "Docker", "WebSockets"],
                 highlights: [
-                    "Architected as modular microservices with isolated tenant environments, shared infrastructure, and independent per-service scaling.",
+                    "Architected a multi-tenant platform with isolated tenant data, shared infrastructure, and a clear boundary between services.",
                     "Shipped a 7-role guest-management platform integrating door-access hardware, OTP two-factor auth, QR/PIN credentialing, and ID scanning with watchlist screening.",
                     "Built the approval/escalation workflow engine and the WebSocket layer handling real-time credential delivery, plus the centralized auth and tenant lifecycle management reused across the platform.",
-                    "Ran the QA retest pass, trained internal IT staff, and carried the project through UAT to go-live on AWS with full CI/CD and Kubernetes-based container orchestration."
+                    "Ran the QA retest pass, trained internal IT staff, and carried the project through UAT to go-live on the company's own server behind an Apache reverse proxy."
                 ],
                 confidential: true
             },
@@ -139,21 +140,45 @@ export const resumeData = {
         ],
         personal: [
             {
+                title: "Retail OS",
+                description: "Point of sale, weighted-average inventory and double-entry accounting where the stock and the books cannot disagree: balanced journals enforced by a database trigger, immutable posted history, money as integer minor units.",
+                tech: ["NestJS 12", "Drizzle", "PostgreSQL 18", "Next.js 16"],
+                links: {
+                    github: "https://github.com/DawitBK/retail-os"
+                }
+            },
+            {
+                title: "JobPilot",
+                description: "Multi-tenant job-search platform: career graph, feed discovery, transparent matching, and applications that only a person can approve. Tenant isolation by row-level security and a hash-chained audit trail.",
+                tech: ["NestJS 12", "Drizzle", "PostgreSQL 18", "Row-level security"],
+                links: {
+                    github: "https://github.com/DawitBK/jobpilot"
+                }
+            },
+            {
                 title: "Library Management System",
-                description: "Full-featured library management system supporting borrowing and return workflows and staff roles.",
+                description: "Library back office and public catalogue: copies and barcodes, lending, renewals, holds queue, fines and reports. Being rebuilt as an enterprise-grade service on the next branch.",
                 tech: ["NestJS", "React", "PostgreSQL"],
                 links: {
-                    github: "https://github.com/DawitBK/Library_Management_System",
+                    github: "https://github.com/DawitBK/library-management-system",
                     live: "https://library-management-system-lyart-pi.vercel.app/"
                 }
             },
             {
                 title: "Martronics",
-                description: "Full-stack e-commerce platform with product listing, cart management, and checkout.",
-                tech: ["React", "Node.js", "Express", "Swagger"],
+                description: "E-commerce platform with catalog, cart, orders and payments. Being rebuilt on the next branch with rotating refresh tokens, idempotent checkout and an OpenAPI contract; the original stays live.",
+                tech: ["NestJS", "React", "PostgreSQL", "Swagger"],
                 links: {
                     github: "https://github.com/DawitBK/martronics",
                     live: "https://martronics.vercel.app"
+                }
+            },
+            {
+                title: "Workspace",
+                description: "Control repo for a developer machine: repo manifest, read-only doctor and manifest-driven clean-up with undo. Zero-dependency Node.",
+                tech: ["Node.js"],
+                links: {
+                    github: "https://github.com/DawitBK/workspace"
                 }
             },
             {
