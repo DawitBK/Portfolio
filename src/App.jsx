@@ -10,6 +10,8 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
+import DemoOfflineDialog from './components/DemoOfflineDialog';
+import { useDemoPolling } from './hooks/useDemoPolling';
 import { usePointerEffects } from './hooks/usePointerEffects';
 import { goTo } from './lib/nav';
 import { useUiStore } from './store/uiStore';
@@ -22,6 +24,7 @@ function App() {
     const paletteOpen = useUiStore((s) => s.paletteOpen);
     const togglePalette = useUiStore((s) => s.togglePalette);
     usePointerEffects();
+    useDemoPolling();
 
     useEffect(() => {
         const onKey = (event) => {
@@ -58,6 +61,7 @@ function App() {
             </main>
             <Footer />
             <Toast />
+            <DemoOfflineDialog />
             {paletteOpen && (
                 <Suspense fallback={null}>
                     <Palette />

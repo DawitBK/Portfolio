@@ -1,6 +1,7 @@
 import Icon from './Icon';
 import Reveal from './Reveal';
 import { showcase } from '../data/content';
+import { gateClick } from '../lib/demoGate';
 
 const repoPath = (url) => url.replace(/^https?:\/\//, '');
 
@@ -39,7 +40,7 @@ const Showcase = () => (
                                     Showcase repo
                                     <span className="sr-only"> for the {name.toLowerCase()} (opens in a new tab)</span>
                                 </a>
-                                <a href={demo} target="_blank" rel="noreferrer" className="btn btn-primary !px-4 !py-2.5">
+                                <a href={demo} target="_blank" rel="noreferrer" onClick={gateClick(demo)} className="btn btn-primary !px-4 !py-2.5">
                                     Live demo
                                     <Icon name="arrowUpRight" size={15} />
                                     <span className="sr-only"> of the {name.toLowerCase()} (opens in a new tab)</span>

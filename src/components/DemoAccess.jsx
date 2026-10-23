@@ -2,6 +2,7 @@ import Icon from './Icon';
 import Reveal from './Reveal';
 import CopyButton from './CopyButton';
 import { demoAccess } from '../data/demoAccess';
+import { gateClick } from '../lib/demoGate';
 
 const Field = ({ label, value }) => (
     <div>
@@ -47,7 +48,7 @@ const DemoAccess = () => (
                 <div className="relative flex flex-col gap-5">
                     <Field label="Email" value={demoAccess.email} />
                     <Field label="Password" value={demoAccess.password} />
-                    <a href={demoAccess.portal} target="_blank" rel="noreferrer" className="btn btn-primary mt-1">
+                    <a href={demoAccess.portal} target="_blank" rel="noreferrer" onClick={gateClick(demoAccess.portal)} className="btn btn-primary mt-1">
                         Open the identity portal
                         <Icon name="arrowUpRight" size={16} />
                     </a>

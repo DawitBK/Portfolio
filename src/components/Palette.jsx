@@ -5,6 +5,7 @@ import { demos, openSource, person, showcase } from '../data/content';
 import { demoAccess } from '../data/demoAccess';
 import { navLinks, subTargets } from '../data/ui';
 import { copyText } from '../lib/clipboard';
+import { openDemo } from '../lib/demoGate';
 import { composeLinks } from '../lib/mail';
 import { downloadFile, goTo, openExternal } from '../lib/nav';
 import { useThemeStore } from '../store/themeStore';
@@ -32,7 +33,7 @@ function buildCommands({ theme, toggleTheme, showToast }) {
     const actions = [
         { id: 'copy-email', label: 'Copy demo login email', hint: 'Sandbox account', keywords: 'demo sign in username copy clipboard', icon: 'copy', run: () => copy(demoAccess.email, 'Demo email') },
         { id: 'copy-password', label: 'Copy demo login password', hint: 'Sandbox account', keywords: 'demo sign in secret copy clipboard', icon: 'copy', run: () => copy(demoAccess.password, 'Demo password') },
-        { id: 'open-portal', label: 'Open the identity portal', hint: 'Start the demos here', keywords: 'sso sign in login portal demo', icon: 'arrowUpRight', run: () => openExternal(demoAccess.portal) },
+        { id: 'open-portal', label: 'Open the identity portal', hint: 'Start the demos here', keywords: 'sso sign in login portal demo', icon: 'arrowUpRight', run: () => openDemo(demoAccess.portal) },
         { id: 'theme', label: `Switch to ${nextTheme} theme`, hint: 'Appearance', keywords: 'dark light mode colour color appearance toggle', icon: theme === 'dark' ? 'sun' : 'moon', run: toggleTheme },
         { id: 'resume', label: 'Download resume', hint: 'PDF', keywords: 'cv pdf download', icon: 'download', run: () => downloadFile(person.resume, person.resume.split('/').pop()) },
         { id: 'email', label: 'Email Dawit', hint: person.email, keywords: 'contact mail write hire', icon: 'mail', run: () => openExternal(composeLinks(person.email).gmail) },
@@ -47,7 +48,7 @@ function buildCommands({ theme, toggleTheme, showToast }) {
         hint: d.kind,
         keywords: `demo live ${d.note}`,
         icon: 'globe',
-        run: () => openExternal(d.url),
+        run: () => openDemo(d.url),
     }));
 
     const code = [

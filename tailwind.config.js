@@ -18,6 +18,7 @@ export default {
                 'accent-soft': token('accent-soft'),
                 'on-accent': token('on-accent'),
                 ok: token('ok'),
+                warn: token('warn'),
             },
             fontFamily: {
                 sans: ['Inter', '"Inter Fallback"', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],

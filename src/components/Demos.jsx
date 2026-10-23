@@ -3,8 +3,10 @@ import Reveal from './Reveal';
 import SectionHead from './SectionHead';
 import DemoAccess from './DemoAccess';
 import Showcase from './Showcase';
+import DemoStatus from './DemoStatus';
 import { demos, sections } from '../data/content';
 import { demoAccess } from '../data/demoAccess';
+import { gateClick } from '../lib/demoGate';
 import { hostOf } from '../lib/text';
 
 const isOriginal = (d) => /first version/i.test(d.kind);
@@ -17,6 +19,7 @@ const DemoCard = ({ demo, index }) => {
                 href={demo.url}
                 target="_blank"
                 rel="noreferrer"
+                onClick={gateClick(demo.url)}
                 className={`spot card group flex h-full flex-col clip transition duration-300 hover:-translate-y-1 hover:shadow-lift focus-visible:-translate-y-1 focus-visible:shadow-lift ${original ? 'border-dashed' : ''}`}
             >
                 <div className="flex items-center gap-3 border-b border-line bg-sunken/70 px-4 py-2.5">
@@ -53,6 +56,7 @@ const Demos = () => (
     <section id="demos" className="section border-y border-line bg-sunken/50">
         <div className="container-page">
             <SectionHead {...sections.demos} />
+            <DemoStatus />
             <DemoAccess />
             <Showcase />
 

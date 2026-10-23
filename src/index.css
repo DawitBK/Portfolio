@@ -34,6 +34,7 @@
     --accent-soft: 225 243 248;
     --on-accent: 255 255 255;
     --ok: 21 128 61;
+    --warn: 180 83 9;
     --shadow: 15 23 42;
   }
   .dark {
@@ -49,6 +50,7 @@
     --accent-soft: 16 42 51;
     --on-accent: 5 18 24;
     --ok: 74 222 128;
+    --warn: 251 191 36;
     --shadow: 0 0 0;
   }
   /* A permanently dark surface, used for bands and the console so the page has rhythm in light mode too. */
@@ -65,6 +67,7 @@
     --accent-soft: 17 45 55;
     --on-accent: 5 18 24;
     --ok: 74 222 128;
+    --warn: 251 191 36;
     --shadow: 0 0 0;
   }
 
