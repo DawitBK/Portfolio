@@ -12,6 +12,13 @@ export const person = {
 
 export const headline = ['Systems whose', 'guarantees can be', 'checked.'];
 
+export const heroGuarantees = [
+    { text: 'A disabled person is signed out of every system', where: 'sso' },
+    { text: 'Every journal entry balances at commit', where: 'retail-os' },
+    { text: 'A session with no tenant sees nothing', where: 'jobpilot' },
+    { text: 'Only a person can approve an application', where: 'jobpilot' },
+];
+
 export const atAGlance = [
     ['Based in', 'Addis Ababa, Ethiopia'],
     ['Focus', 'Identity, multi-tenant SaaS, internal platforms'],
