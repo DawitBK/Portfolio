@@ -5,6 +5,7 @@ import { demos, openSource, person, showcase } from '../data/content';
 import { demoAccess } from '../data/demoAccess';
 import { navLinks, subTargets } from '../data/ui';
 import { copyText } from '../lib/clipboard';
+import { composeLinks } from '../lib/mail';
 import { downloadFile, goTo, openExternal } from '../lib/nav';
 import { useThemeStore } from '../store/themeStore';
 import { useUiStore } from '../store/uiStore';
@@ -34,7 +35,7 @@ function buildCommands({ theme, toggleTheme, showToast }) {
         { id: 'open-portal', label: 'Open the identity portal', hint: 'Start the demos here', keywords: 'sso sign in login portal demo', icon: 'arrowUpRight', run: () => openExternal(demoAccess.portal) },
         { id: 'theme', label: `Switch to ${nextTheme} theme`, hint: 'Appearance', keywords: 'dark light mode colour color appearance toggle', icon: theme === 'dark' ? 'sun' : 'moon', run: toggleTheme },
         { id: 'resume', label: 'Download resume', hint: 'PDF', keywords: 'cv pdf download', icon: 'download', run: () => downloadFile(person.resume, person.resume.split('/').pop()) },
-        { id: 'email', label: 'Email Dawit', hint: person.email, keywords: 'contact mail write hire', icon: 'mail', run: () => (window.location.href = `mailto:${person.email}`) },
+        { id: 'email', label: 'Email Dawit', hint: person.email, keywords: 'contact mail write hire', icon: 'mail', run: () => openExternal(composeLinks(person.email).gmail) },
         { id: 'github', label: 'GitHub profile', hint: 'github.com/DawitBK', keywords: 'code repositories', icon: 'github', run: () => openExternal(person.github) },
         { id: 'linkedin', label: 'LinkedIn profile', hint: 'linkedin.com/in/dawit-b-kassie', keywords: 'social network', icon: 'linkedin', run: () => openExternal(person.linkedin) },
     ].map((c) => ({ ...c, group: 'Actions' }));

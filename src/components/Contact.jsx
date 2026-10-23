@@ -1,10 +1,12 @@
 import Icon from './Icon';
 import Reveal from './Reveal';
 import CopyButton from './CopyButton';
+import EmailMe from './EmailMe';
 import { person } from '../data/content';
+import { composeLinks } from '../lib/mail';
 
 const rows = [
-    { label: 'Email', text: person.email, href: `mailto:${person.email}`, icon: 'mail', copy: true },
+    { label: 'Email', text: person.email, href: composeLinks(person.email).gmail, icon: 'mail', copy: true },
     { label: 'Phone', text: person.phone, href: `tel:${person.phone.replace(/\s/g, '')}`, icon: 'phone', copy: true },
     { label: 'GitHub', text: 'github.com/DawitBK', href: person.github, icon: 'github' },
     { label: 'LinkedIn', text: 'linkedin.com/in/dawit-b-kassie', href: person.linkedin, icon: 'linkedin' },
@@ -30,10 +32,7 @@ const Contact = () => (
                             </h2>
                             <p className="lede mt-7 max-w-lg">I am open to senior engineering, architecture and technical lead roles, in Addis Ababa or remote. Email gets the fastest reply.</p>
                             <div className="mt-9 flex flex-wrap gap-3">
-                                <a href={`mailto:${person.email}`} className="btn btn-primary">
-                                    <Icon name="mail" size={16} />
-                                    Email me
-                                </a>
+                                <EmailMe address={person.email} />
                                 <a href={person.resume} className="btn btn-ghost" target="_blank" rel="noreferrer">
                                     <Icon name="download" size={16} />
                                     Download resume
