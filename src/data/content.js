@@ -7,7 +7,7 @@ export const person = {
     github: 'https://github.com/DawitBK',
     linkedin: 'https://www.linkedin.com/in/dawit-b-kassie',
     resume: '/Dawit-Bayou-Kassie-Resume.pdf',
-    lead: 'I design identity platforms, multi-tenant SaaS and internal systems, and I write the tests, runbooks and documents that let other people run them.',
+    lead: 'I build the systems a company quietly depends on: sign-in, documents, visitors, money. Then I write the tests, runbooks and decision records that let someone else run them on a bad day.',
 };
 
 export const headline = ['Systems whose', 'guarantees can be', 'checked.'];
@@ -16,40 +16,63 @@ export const atAGlance = [
     ['Based in', 'Addis Ababa, Ethiopia'],
     ['Focus', 'Identity, multi-tenant SaaS, internal platforms'],
     ['Stack', 'NestJS, TypeScript, PostgreSQL, Next.js, Docker'],
-    ['Open to', 'Senior engineering, architecture and technical lead roles, local or remote'],
+    ['Open to', 'Senior engineering, architecture and technical lead roles. Addis Ababa or remote.'],
 ];
 
 export const proof = [
     { value: '3,000+', label: 'automated tests across three enterprise systems' },
-    { value: '3', label: 'enterprise platforms designed and built' },
-    { value: '4', label: 'open-source applications on one stack' },
-    { value: '3+', label: 'years building production systems' },
+    { value: '3', label: 'enterprise platforms, from requirements to release' },
+    { value: '4', label: 'open-source applications on one shared stack' },
+    { value: '3+', label: 'years shipping production systems' },
 ];
 
 export const capabilities = [
     {
-        title: 'Architecture and identity',
-        body: 'Single sign-on with OpenID Connect, role-based access, tenant isolation and audit trails that show tampering. I decide where each rule lives so it cannot be skipped.',
+        title: 'Identity and access',
+        body: 'Who someone is, what they may do, and proof of what they did. I build single sign-on on OpenID Connect, role-based access, tenant isolation, and audit trails that show when someone has tampered with them.',
     },
     {
         title: 'Full-stack delivery',
-        body: 'NestJS and Node APIs with typed contracts, Next.js and React front ends, PostgreSQL schemas shaped by real read and write patterns, queues and real-time updates.',
+        body: 'Typed APIs in NestJS, interfaces in Next.js and React, and PostgreSQL schemas shaped by how the data is actually read and written. Queues and real-time updates where the work calls for them, and not before.',
     },
     {
         title: 'Release and operations',
-        body: 'Repeatable releases with preflight checks, rollback and backups; signed releases and licences; CI pipelines; step-by-step runbooks for the people who operate the system.',
+        body: 'A system is not finished until someone else can ship it. Preflight checks, rollback, backups, signed releases, and runbooks written for the person on call.',
     },
 ];
+
+export const sections = {
+    work: {
+        kicker: 'Selected work',
+        title: 'The work, and what keeps it honest.',
+        lede: 'Four systems I built for an employer and three I publish. For each one: what it does, the claim that matters, and the test behind the claim.',
+    },
+    demos: {
+        kicker: 'Live demos',
+        title: 'Try the systems for yourself.',
+        lede: 'Company-neutral editions running on demo data, plus the two original storefronts. Start at the identity portal: every other demo signs in through it. They run on a single machine of mine, so one may occasionally be offline.',
+    },
+    approach: {
+        kicker: 'How I work',
+        title: 'Four habits behind everything above.',
+        lede: 'None of these are original. Applying them every time, including when a deadline says otherwise, is the job.',
+    },
+    experience: {
+        kicker: 'Experience',
+        title: 'Where I have done this work.',
+        lede: 'Three years, from freelance client work to leading architecture for a conglomerate.',
+    },
+};
 
 export const production = [
     {
         title: 'Single sign-on platform',
         tag: 'Employer system, private',
-        summary: 'One sign-in for every internal system, built as a custom OpenID Connect provider instead of adopting an off-the-shelf one that did not fit the existing Active Directory.',
+        summary: 'Every internal system used to have its own login. I replaced them with one, built on OpenID Connect and the company\'s existing Active Directory.',
         points: [
-            'Authorization code with PKCE, signed tokens, Active Directory integration, an admin console and an application launcher.',
-            'Back-channel logout: when someone signs out or is disabled, a signed notice reaches every connected system and ends their sessions there.',
-            'Offline-signed licences that systems verify without calling home, including a rule that a system tied to SSO ends with SSO.',
+            'The hard part is signing out. When someone leaves or is disabled, a signed notice reaches every connected system and ends their sessions there, not only in the portal.',
+            'Licences are signed offline and verified without calling home. A system tied to SSO ends when SSO does, and a forged note can only shorten that, never extend it.',
+            'Authorization code with PKCE, signed tokens, an admin console and an application launcher round it out.',
         ],
         proof: '831 automated tests',
         stack: ['Node.js', 'TypeScript', 'PostgreSQL', 'OpenID Connect', 'Next.js'],
@@ -57,11 +80,11 @@ export const production = [
     {
         title: 'Document and records system',
         tag: 'Employer system, private',
-        summary: 'Document and archive management where staff can ask questions in plain language instead of searching by keyword.',
+        summary: 'Staff can ask the archive a question in plain language instead of guessing at keywords.',
         points: [
-            'Semantic search with embeddings and pgvector, with LLM summaries and question answering over large document sets.',
-            'Access control with 29 permissions across six roles, hash-chained audit logs, AES-256-GCM encryption at rest, e-signatures, legal hold and retention scheduling.',
-            'Automated ingestion: classification, metadata extraction and lifecycle access control across document formats.',
+            'Search combines embeddings in pgvector with full-text search, and an LLM summarizes and answers from the documents it retrieved.',
+            'Access is 29 permissions across six roles. Audit logs are hash-chained so an edit shows, files are encrypted at rest with AES-256-GCM, and e-signatures, legal hold and retention schedules are built in.',
+            'Ingestion classifies documents and extracts metadata across formats, so filing is not a manual chore.',
         ],
         proof: '1,639 automated tests',
         stack: ['NestJS', 'PostgreSQL', 'MinIO', 'Redis', 'BullMQ', 'Meilisearch', 'pgvector'],
@@ -69,11 +92,11 @@ export const production = [
     {
         title: 'Guest management platform',
         tag: 'Employer system, private',
-        summary: 'Multi-tenant visitor management, taken through QA and UAT and live on the company\'s own server behind an Apache reverse proxy.',
+        summary: 'Visitors, approvals and door access for a multi-tenant company. Taken through QA and UAT, and live on the company\'s own server.',
         points: [
-            'Seven roles, an approval and escalation workflow, and real-time credential delivery over WebSockets.',
-            'Door-access hardware integration, two-factor sign-in by one-time code, QR and PIN credentials, and ID scanning with watchlist screening.',
-            'Trained the internal IT staff who operate it.',
+            'Seven roles, an approval and escalation workflow, and credentials delivered to the visitor in real time over WebSockets.',
+            'Door-access hardware, one-time-code sign-in, QR and PIN credentials, and ID scanning with watchlist screening.',
+            'I trained the IT staff who operate it.',
         ],
         proof: '605 automated tests',
         stack: ['Node.js', 'Next.js', 'PostgreSQL', 'Redis', 'BullMQ', 'WebSockets'],
@@ -81,11 +104,11 @@ export const production = [
     {
         title: 'Release and licensing security',
         tag: 'Employer platform, private',
-        summary: 'A repeatable way to ship to a server only a few people may touch.',
+        summary: 'A repeatable way to ship to a server that only a few people may touch.',
         points: [
-            'Preflight checks, settings applied at release time with automatic rollback, backups and written runbooks.',
-            'Signed releases, a tamper watcher, and owner-only operations kept out of any automated agent\'s permissions.',
-            'Independent code reviews whose findings are fixed before release.',
+            'Every release runs preflight checks first. Settings change only at apply time, with a backup taken beforehand and automatic rollback if anything fails.',
+            'Releases are signed and a watcher flags tampering. Owner-only operations sit outside any automated agent\'s permissions, enforced by policy files and not by good intentions.',
+            'Independent reviews found real defects in my own work. I fixed every one before release.',
         ],
         proof: 'Rehearsed, with rollback',
         stack: ['Node.js', 'PowerShell', 'Cryptographic signing'],
@@ -96,33 +119,33 @@ export const openSource = [
     {
         title: 'Retail OS',
         url: 'https://github.com/DawitBK/retail-os',
-        summary: 'Point of sale, weighted-average inventory and double-entry accounting, built so the stock and the books cannot disagree.',
+        summary: 'A point of sale where the shelf and the books cannot disagree.',
         points: [
-            'Every entry balances: enforced by the application and again by a deferred database trigger at commit.',
-            'Posted history is immutable, even with SQL; a void posts the mirror entry.',
-            'Two tills never sell the last unit twice or push a customer past a credit limit. Money is integer minor units, never a float.',
+            'Every entry balances. The application checks it, and a deferred database trigger checks it again at commit.',
+            'Posted history is immutable, even to someone with SQL access. A void posts the mirror entry instead of deleting.',
+            'Two tills cannot sell the last unit twice or push a customer past a credit limit. Money is integer minor units, never a float.',
         ],
         stack: ['NestJS 12', 'Drizzle', 'PostgreSQL 18', 'Next.js 16'],
     },
     {
         title: 'JobPilot',
         url: 'https://github.com/DawitBK/jobpilot',
-        summary: 'Multi-tenant job-search platform: career graph, jobs from public feeds, a transparent matching engine, and applications only a person can approve.',
+        summary: 'Job search where the software proposes and only a person approves.',
         points: [
-            'Tenant isolation is enforced by the database with row-level security; a session with no tenant sees nothing.',
-            'An 18-state application machine where the browser worker and the AI cannot approve; a constraint refuses to store such an event.',
-            'A hash-chained audit trail that shows tampering. Status: API and web app built; the AI features are specified, not built.',
+            'Tenant isolation is the database\'s job. With row-level security, a session that names no tenant sees nothing.',
+            'Applications move through an 18-state machine. The browser worker and the AI cannot approve, and a constraint refuses to store an approval from either.',
+            'The audit trail is hash-chained. Status: API and web app are built; the AI features are specified and not built yet.',
         ],
         stack: ['NestJS 12', 'Drizzle', 'PostgreSQL 18', 'Row-level security'],
     },
     {
         title: 'Martronics and Library Management',
         url: 'https://github.com/DawitBK/martronics',
-        summary: 'Two earlier apps, an e-commerce store and a library back office, rebuilt as enterprise-grade services. The originals are tagged and kept.',
+        summary: 'An online store and a library back office, rebuilt as enterprise-grade services. The originals are tagged and kept.',
         points: [
             'Rotating refresh tokens with reuse detection, optimistic concurrency, idempotent checkout and lending, and an OpenAPI contract.',
-            'A holds queue where a returned copy is set aside for the longest-waiting member, and fines that block borrowing.',
-            'Both sign in through OpenID Connect with back-channel logout.',
+            'The library queues holds fairly: a returned copy is set aside for the member who has waited longest, and unpaid fines block borrowing.',
+            'Both sign in through OpenID Connect and honour back-channel logout.',
         ],
         stack: ['NestJS', 'Drizzle', 'PostgreSQL 18', 'Next.js'],
         extraLink: { label: 'Library repository', url: 'https://github.com/DawitBK/library-management-system' },
@@ -135,28 +158,28 @@ export const demos = [
     { name: 'Guest management', kind: 'GMS', url: 'https://saas-gms.vercel.app/gms', note: 'Visitors, approvals and door credentials.' },
     { name: 'Retail OS', kind: 'Point of sale and accounting', url: 'https://saas-retail.vercel.app', note: 'Sales, stock and double-entry books.' },
     { name: 'JobPilot', kind: 'Job search', url: 'https://saas-jobpilot.vercel.app', note: 'Matching and an application pipeline.' },
-    { name: 'Martronics', kind: 'E-commerce', url: 'https://saas-martronics.vercel.app', note: 'Electronics storefront with checkout.' },
+    { name: 'Martronics', kind: 'E-commerce', url: 'https://saas-martronics.vercel.app', note: 'An electronics storefront with checkout.' },
     { name: 'Library', kind: 'Library catalogue', url: 'https://saas-library.vercel.app', note: 'Public catalogue and staff desk.' },
-    { name: 'Martronics, original', kind: 'First version', url: 'https://martronics.vercel.app', note: 'The original storefront the rebuild replaces.' },
-    { name: 'Library, original', kind: 'First version', url: 'https://library-management-system-lyart-pi.vercel.app', note: 'The original front end the rebuild replaces.' },
+    { name: 'Martronics, original', kind: 'First version', url: 'https://martronics.vercel.app', note: 'The storefront the rebuild replaces.' },
+    { name: 'Library, original', kind: 'First version', url: 'https://library-management-system-lyart-pi.vercel.app', note: 'The front end the rebuild replaces.' },
 ];
 
 export const principles = [
     {
         title: 'Put the rule where it cannot be skipped.',
-        body: 'If two things must never disagree, the database refuses the write that would make them disagree. Application code is a convenience; the constraint is the guarantee.',
+        body: 'If two numbers must never disagree, the database refuses the write that would split them. Application code is the convenience. The constraint is the guarantee.',
     },
     {
-        title: 'Every guarantee has a test that proves it.',
-        body: 'My READMEs list each guarantee next to the test that checks it. A claim without a test is a hope.',
+        title: 'Pair every guarantee with a test.',
+        body: 'My READMEs list each guarantee next to the test that proves it. A claim with no test is a hope.',
     },
     {
-        title: 'Build it so someone else can run it.',
-        body: 'Preflight checks, rollback, backups and runbooks written for the operator, not the author. A release nobody else can repeat is not finished.',
+        title: 'Write for the person on call.',
+        body: 'Preflight checks, rollback, backups, runbooks. If only the author can repeat a release, it is not finished.',
     },
     {
-        title: 'Ask for proof, from people and from agents.',
-        body: 'After catching AI coding agents reporting work that was not done, every task requires live request and response output or SQL as evidence before it counts.',
+        title: 'Ask for evidence, from people and from agents.',
+        body: 'I work with AI coding agents every day. After a few reported work that never happened, the rule became simple: show the request and response, or the SQL, before anything counts as done.',
     },
 ];
 
@@ -167,10 +190,10 @@ export const experience = [
         period: '2026 to present',
         place: 'Addis Ababa, on-site',
         points: [
-            'Lead architecture and delivery of the group\'s internal platform: single sign-on, a document and records system, a guest management system and a retail ERP, coordinating engineers and AI coding agents.',
-            'Built the OpenID Connect single sign-on service with back-channel logout, and designed licensing and release security.',
+            'Lead architecture and delivery for the group\'s internal platform: single sign-on, a document and records system, a guest management system and a retail ERP. I direct engineers and AI coding agents across all four.',
+            'Built the single sign-on service, with back-channel logout, and designed licensing and release security for the whole platform.',
             'Run the verification discipline: more than 3,000 automated tests, status reports checked in CI, and independent reviews before release.',
-            'Own requirements, design documents, executive reporting and internal training material.',
+            'Write the requirements, design documents, executive reports and training material.',
         ],
     },
     {
@@ -180,7 +203,7 @@ export const experience = [
         place: 'Addis Ababa, on-site',
         points: [
             'Built and maintained corporate platforms and internal business applications.',
-            'Standardized the component architecture and deployment workflow, and cut page load times.',
+            'Standardized the component architecture and the deployment workflow, and cut page load times.',
         ],
     },
     {
@@ -189,8 +212,8 @@ export const experience = [
         period: 'Jan 2023 to 2025',
         place: 'Remote',
         points: [
-            'Designed, built and deployed full-stack applications for clients in several industries, from scoping to launch.',
-            'Set up container and CI/CD pipelines and managed AWS and Azure deployments including networking, storage and IAM.',
+            'Designed, built and deployed full-stack applications for clients in several industries, from first scoping call to launch.',
+            'Set up container and CI/CD pipelines, and ran AWS and Azure deployments including networking, storage and IAM.',
         ],
     },
 ];

@@ -46,10 +46,10 @@
     @apply font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent;
   }
   .section {
-    @apply border-t border-line py-20 md:py-28;
+    @apply border-t border-line py-24 md:py-36;
   }
   .h-section {
-    @apply font-serif text-4xl leading-[1.1] md:text-5xl;
+    @apply font-serif text-4xl leading-[1.08] md:text-6xl;
   }
   .chip {
     @apply inline-flex items-center rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.7rem] text-muted;

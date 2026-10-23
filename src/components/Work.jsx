@@ -1,9 +1,10 @@
 import React from 'react';
 import Reveal from './Reveal';
-import { production, openSource } from '../data/content';
+import SectionHead from './SectionHead';
+import { production, openSource, sections } from '../data/content';
 
 const Stack = ({ items }) => (
-    <ul className="mt-5 flex flex-wrap gap-2">
+    <ul className="mt-6 flex flex-wrap gap-2">
         {items.map((s) => (
             <li key={s} className="chip">
                 {s}
@@ -13,66 +14,85 @@ const Stack = ({ items }) => (
 );
 
 const Points = ({ items }) => (
-    <ul className="mt-4 space-y-2.5 text-[0.95rem] leading-relaxed">
+    <ul className="mt-6 space-y-4 text-[0.98rem] leading-[1.7]">
         {items.map((p) => (
-            <li key={p} className="flex gap-3">
-                <span aria-hidden="true" className="mt-2.5 h-px w-4 shrink-0 bg-accent" />
-                <span>{p}</span>
+            <li key={p} className="flex gap-4">
+                <span aria-hidden="true" className="mt-[0.8rem] h-px w-5 shrink-0 bg-accent" />
+                <span className="max-w-[40rem]">{p}</span>
             </li>
         ))}
     </ul>
 );
 
+const Entry = ({ index, left, children }) => (
+    <Reveal as="article" className="grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.55fr)] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="font-mono text-xs text-accent">{String(index).padStart(2, '0')}</p>
+            {left}
+        </div>
+        <div>{children}</div>
+    </Reveal>
+);
+
+const Group = ({ label }) => (
+    <h3 className="mt-20 border-b border-line pb-4 font-mono text-xs uppercase tracking-[0.18em] text-muted first:mt-0">{label}</h3>
+);
+
+const Link = ({ href, children }) => (
+    <a className="underline decoration-line underline-offset-[5px] transition-colors hover:decoration-accent" href={href} target="_blank" rel="noreferrer">
+        {children}
+    </a>
+);
+
 const Work = () => (
     <section id="work" className="section">
         <div className="container-page">
-            <Reveal>
-                <p className="kicker mb-4">Selected work</p>
-                <h2 className="h-section max-w-2xl">What I built, and what stops it from breaking.</h2>
-            </Reveal>
+            <SectionHead {...sections.work} />
 
-            <h3 className="mt-16 border-b border-line pb-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">Production systems</h3>
-            <div className="divide-y divide-line">
-                {production.map((item) => (
-                    <Reveal key={item.title} as="article" className="grid gap-6 py-10 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
-                        <div>
-                            <p className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">{item.tag}</p>
-                            <h4 className="mt-2 font-serif text-3xl">{item.title}</h4>
-                            <p className="mt-3 text-sm font-medium text-accent">{item.proof}</p>
-                        </div>
-                        <div>
-                            <p className="text-lg leading-relaxed">{item.summary}</p>
+            <div className="mt-20">
+                <Group label="Production systems" />
+                <div className="divide-y divide-line">
+                    {production.map((item, i) => (
+                        <Entry
+                            key={item.title}
+                            index={i + 1}
+                            left={
+                                <>
+                                    <h4 className="mt-3 font-serif text-4xl leading-[1.1]">{item.title}</h4>
+                                    <p className="mt-4 font-mono text-[0.7rem] uppercase tracking-wider text-muted">{item.tag}</p>
+                                    <p className="mt-5 inline-block rounded-full bg-accent-soft px-3 py-1 text-sm font-medium text-accent">{item.proof}</p>
+                                </>
+                            }
+                        >
+                            <p className="max-w-[40rem] text-xl leading-[1.6]">{item.summary}</p>
                             <Points items={item.points} />
                             <Stack items={item.stack} />
-                        </div>
-                    </Reveal>
-                ))}
-            </div>
+                        </Entry>
+                    ))}
+                </div>
 
-            <h3 className="mt-16 border-b border-line pb-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">Open source</h3>
-            <div className="divide-y divide-line">
-                {openSource.map((item) => (
-                    <Reveal key={item.title} as="article" className="grid gap-6 py-10 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
-                        <div>
-                            <h4 className="font-serif text-3xl">{item.title}</h4>
-                            <div className="mt-4 flex flex-col items-start gap-1.5 text-sm">
-                                <a className="underline decoration-line underline-offset-4 hover:decoration-accent" href={item.url} target="_blank" rel="noreferrer">
-                                    View on GitHub
-                                </a>
-                                {item.extraLink && (
-                                    <a className="underline decoration-line underline-offset-4 hover:decoration-accent" href={item.extraLink.url} target="_blank" rel="noreferrer">
-                                        {item.extraLink.label}
-                                    </a>
-                                )}
-                            </div>
-                        </div>
-                        <div>
-                            <p className="text-lg leading-relaxed">{item.summary}</p>
+                <Group label="Open source" />
+                <div className="divide-y divide-line">
+                    {openSource.map((item, i) => (
+                        <Entry
+                            key={item.title}
+                            index={production.length + i + 1}
+                            left={
+                                <>
+                                    <h4 className="mt-3 font-serif text-4xl leading-[1.1]">{item.title}</h4>
+                                    <div className="mt-5 flex flex-col items-start gap-2 text-sm">
+                                        <Link href={item.url}>View on GitHub</Link>
+                                        {item.extraLink && <Link href={item.extraLink.url}>{item.extraLink.label}</Link>}
+                                    </div>
+                                </>
+                            }
+                        >
+                            <p className="max-w-[40rem] text-xl leading-[1.6]">{item.summary}</p>
                             <Points items={item.points} />
                             <Stack items={item.stack} />
-                        </div>
-                    </Reveal>
-                ))}
+                        </Entry>
+                    ))}
+                </div>
             </div>
         </div>
     </section>
