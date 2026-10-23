@@ -26,6 +26,17 @@
     scroll-padding-top: 5rem;
     @apply antialiased;
   }
+  /* On large monitors the type and spacing grow with the frame, so a wide layout stays comfortable and does not just spread out. */
+  @media (min-width: 1800px) {
+    html {
+      font-size: 112.5%;
+    }
+  }
+  @media (min-width: 2300px) {
+    html {
+      font-size: 125%;
+    }
+  }
   body {
     @apply bg-paper text-ink font-sans overflow-x-hidden;
     font-feature-settings: 'cv11', 'ss01';
@@ -40,7 +51,7 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-page px-6 md:px-10;
+    @apply mx-auto w-full px-6 md:w-[88%] md:max-w-[2400px] md:px-0;
   }
   .kicker {
     @apply font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent;
