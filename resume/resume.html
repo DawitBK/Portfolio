@@ -30,16 +30,17 @@
 <div class="contact">Addis Ababa, Ethiopia &middot; +251 921 640 101 &middot; dawitbk01@gmail.com<br>linkedin.com/in/dawit-b-kassie &middot; github.com/DawitBK</div>
 
 <h2>Professional summary</h2>
-<p style="margin:0">Solutions architect and full-stack engineer with three-plus years building production systems: multi-tenant SaaS, enterprise internal platforms and centralized identity. Strongest in Node.js, NestJS, TypeScript and PostgreSQL. Known for making correctness checkable: rules enforced in the database, a test that proves each guarantee, and runbooks an operations team can follow. Owns projects end to end, from BRD/FRS/TDD authorship and architecture through build, deployment and verification, directing a mix of engineers and AI coding agents. BSc in Electrical &amp; Computer Engineering.</p>
+<p style="margin:0">Solutions architect and full-stack engineer with three-plus years building production systems: multi-tenant SaaS, enterprise internal platforms, centralized identity and ERP on Odoo. Strongest in Node.js, NestJS, TypeScript and PostgreSQL, with working range from UI/UX and frontend to CI/CD, cloud and applied AI. Known for making correctness checkable: rules enforced in the database, a test that proves each guarantee, and runbooks an operations team can follow. Owns projects end to end, from BRD/FRS/TDD authorship and architecture through build, deployment and verification, directing a mix of engineers and AI coding agents. BSc in Electrical &amp; Computer Engineering.</p>
 
 <h2>Technical skills</h2>
 <div class="skills">
 <p><b>Backend &amp; APIs:</b> Node.js, NestJS, Express, TypeScript, REST and OpenAPI contracts (Zod), WebSockets; Python and Java (working knowledge)</p>
 <p><b>Architecture:</b> multi-tenant SaaS, row-level security, event-driven design, transactional outbox, Domain-Driven and Clean Architecture; BullMQ, Redis, Kafka, RabbitMQ</p>
 <p><b>Identity &amp; security:</b> OpenID Connect and OAuth 2.0 (authorization code + PKCE, back-channel logout), SSO, RBAC, JWT, signed licences and releases, hash-chained audit logs, AES-256-GCM, OWASP practices; Keycloak, Authentik, Zitadel evaluated</p>
-<p><b>Frontend:</b> React, Next.js, TypeScript, Tailwind CSS, Zustand, Redux</p>
+<p><b>Frontend &amp; UI/UX:</b> React, Next.js, TypeScript, Tailwind CSS, Zustand, Redux; UI/UX design in Figma; Adobe Illustrator, Photoshop and Premiere Pro</p>
+<p><b>ERP &amp; business systems:</b> Odoo (custom addons, OpenID Connect integration), ERPNext customisation, custom ERP design: inventory, double-entry accounting, procurement, manufacturing operations, approval workflows, reports</p>
 <p><b>Data:</b> PostgreSQL (triggers, RLS, constraints, migrations), Drizzle, Prisma, TypeORM, Sequelize, MySQL, MongoDB, Redis, Meilisearch, pgvector</p>
-<p><b>Cloud &amp; DevOps:</b> Docker, GitHub Actions, GitLab CI/CD, Nginx and Apache reverse proxies, Linux and Windows Server operations, backup and restore drills, Terraform, Kubernetes, AWS, Azure, Prometheus, Grafana</p>
+<p><b>Cloud &amp; DevOps:</b> Git branching and code-review workflows, Docker, GitHub Actions, GitLab CI/CD, Nginx and Apache reverse proxies, Linux and Windows Server operations, backup and restore drills, Terraform, Kubernetes, AWS, Azure, Prometheus, Grafana</p>
 <p><b>Applied AI:</b> LLM integration, RAG and semantic search, agentic system design, AI-assisted development (Claude, Codex, Cursor) with proof-based verification</p>
 </div>
 
@@ -85,23 +86,29 @@
 <li><b>Martronics and Library Management:</b> rebuilds of two earlier apps with rotating refresh tokens and reuse detection, optimistic concurrency, idempotent writes, a transactional outbox and an OpenAPI contract. All four apps sign in through OpenID Connect with back-channel logout.</li>
 </ul></div>
 
-<div class="proj"><div class="title">MOS on Odoo, and developer workspace tooling</div>
-<div class="tech">Python, Odoo 20, OpenID Connect, Node.js</div>
+<div class="proj"><div class="title">MOS: manufacturing-operations ERP on Odoo 20 &nbsp;<span class="meta" style="font-weight:400">private repository</span></div>
+<div class="tech">Python, Odoo 20, PostgreSQL, OpenID Connect, Node.js</div>
 <ul>
-<li>Custom Odoo addons that add OpenID Connect sign-in (PKCE, account binding, back-channel logout) without changing Odoo itself; a manifest-driven workspace tool that audits a developer machine and cleans it up with an undo.</li>
+<li>Customised Odoo 20 with 31 custom addons and more than 300 automated tests, covering gate and weighbridge, lab and quality, inbound receiving, procurement, inventory, approvals with separation of duties, payables, sales and production. Addons only, so Odoo itself stays upgradeable.</li>
+<li>Added OpenID Connect sign-in (PKCE, account binding, back-channel logout) as an addon, and wrote the requirements specification and architecture decision records the build follows.</li>
 </ul></div>
 
-<div class="proj"><div class="title">GMS: Multi-Tenant Guest Management Platform &nbsp;<span class="meta" style="font-weight:400">employer system</span></div>
+<div class="proj"><div class="title">Platform showcases: identity, document and guest management &nbsp;<span class="meta" style="font-weight:400">github.com/DawitBK/sso-showcase, dms-showcase, gms-showcase</span></div>
+<ul>
+<li>Public showcase repositories for the three platforms, each with architecture, screenshots and a live demo, while the source stays private. Live demos and a sandbox administrator login: dawitbkportfolio.vercel.app.</li>
+</ul></div>
+
+<div class="proj"><div class="title">GMS: Guest Management Platform &nbsp;<span class="meta" style="font-weight:400">employer system</span></div>
 <div class="tech">Node.js, Next.js, TypeScript, PostgreSQL, Redis, BullMQ, WebSockets, Docker</div>
 <ul>
-<li>Architected a multi-tenant visitor platform with seven roles, door-access hardware integration, OTP two-factor sign-in, QR/PIN credentials, ID scanning with watchlist screening, and an approval and escalation workflow with real-time delivery.</li>
+<li>Architected a multi-office visitor platform with seven roles, door-access hardware integration, OTP two-factor sign-in, QR/PIN credentials, ID scanning with watchlist screening, and an approval and escalation workflow with real-time delivery.</li>
 <li>Carried it through QA and UAT, trained internal IT staff, and took it live on the company's own server behind an Apache reverse proxy.</li>
 </ul></div>
 
 <div class="proj"><div class="title">EDAMS: Document &amp; Archive Management System &nbsp;<span class="meta" style="font-weight:400">employer system</span></div>
-<div class="tech">NestJS, PostgreSQL, MinIO, Redis, BullMQ, Meilisearch, pgvector, RAG</div>
+<div class="tech">Node.js, Express, Next.js, TypeScript, PostgreSQL, MinIO, Redis, BullMQ, Meilisearch</div>
 <ul>
-<li>Designed natural-language retrieval over large document sets (embeddings, pgvector, LLM summaries) and the RBAC and audit layer: 29 permissions across six roles, HMAC-chained logs, AES-256-GCM at rest, e-signatures, legal hold and retention scheduling.</li>
+<li>Built the document lifecycle, full-text search and an opt-in AI assistant (tenant-scoped questions over documents and audit logs, summaries, metadata extraction), and the RBAC and audit layer: 53 permissions with per-document access rules, hash-chained logs, AES-256-GCM at rest, e-signatures, legal hold and retention scheduling.</li>
 </ul></div>
 
 <h2>Education &amp; certifications</h2>

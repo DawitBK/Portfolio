@@ -76,7 +76,7 @@ export const capabilities = [
     },
     {
         title: 'ERP and business systems',
-        body: 'Custom ERP builds and ERP customisation on Odoo and ERPNext: modules, workflows, approvals, integrations, single sign-on and reports. I built Retail OS (point of sale, inventory, double-entry accounting), wrote Odoo 20 addons for OpenID Connect sign-in, and authored the MOS manufacturing ERP plan.',
+        body: 'Custom ERP builds and ERP customisation on Odoo and ERPNext: modules, workflows, approvals, integrations, single sign-on and reports. I built Retail OS (point of sale, inventory, double-entry accounting) and customised Odoo 20 into a manufacturing-operations ERP with 31 custom addons and more than 300 tests, from the specification to OpenID Connect sign-in.',
     },
     {
         title: 'Identity and security engineering',
@@ -84,7 +84,7 @@ export const capabilities = [
     },
     {
         title: 'Applied AI',
-        body: 'Retrieval-augmented search on pgvector embeddings with full-text search, LLM summaries, and policy controls on what a model may see and do. I design agentic features so only a person approves outcomes, and I direct AI coding agents under evidence-based review.',
+        body: 'LLM integration with tenant-scoped tool calling, document summaries and metadata extraction, and policy controls on what a model may see and do. I design retrieval-augmented search on pgvector and full-text search, and agentic features where only a person approves outcomes. I direct AI coding agents under evidence-based review.',
     },
     {
         title: 'DevOps and release engineering',
@@ -157,13 +157,13 @@ export const production = [
     {
         title: 'Document and records platform',
         tag: 'Employer system, private',
-        summary: 'Archive management where staff search in plain language, using pgvector embeddings alongside full-text search, with LLM summaries. Twenty-nine permissions across six roles, hash-chained audit logs, e-signatures, legal hold, retention schedules and AES-256-GCM encryption at rest.',
-        facts: ['1,639 automated tests', '29 permissions, 6 roles', 'Hash-chained audit', 'Legal hold and retention'],
+        summary: 'Archive management with full-text search and an opt-in AI assistant that answers questions over documents and audit logs, summarises documents and extracts metadata, behind per-tenant consent and usage controls. Fifty-three permissions with per-document access rules, hash-chained audit logs, e-signatures, legal hold, retention schedules and AES-256-GCM encryption at rest.',
+        facts: ['1,639 automated tests', '53 permissions, 7 roles', 'Hash-chained audit', 'Legal hold and retention'],
     },
     {
         title: 'Guest management platform',
         tag: 'Employer system, private',
-        summary: 'Multi-tenant visitor management with approvals and escalation, door-access hardware, one-time-code sign-in, QR and PIN entry, and ID scanning with watchlist screening. Taken through QA and UAT, and live on the company\'s own server behind an Apache reverse proxy.',
+        summary: 'Multi-office visitor management with approvals and escalation, door-access hardware, one-time-code sign-in, QR and PIN entry, and ID scanning with watchlist screening. Taken through QA and UAT, and live on the company\'s own server behind an Apache reverse proxy.',
         facts: ['605 automated tests', '7 roles', 'Real-time WebSockets', 'IT staff trained'],
     },
 ];
@@ -191,6 +191,18 @@ export const demos = [
     { name: 'Martronics, original', kind: 'First version', url: 'https://martronics.vercel.app', note: 'The storefront the rebuild replaces.' },
     { name: 'Library, original', kind: 'First version', url: 'https://library-management-system-lyart-pi.vercel.app', note: 'The front end the rebuild replaces.' },
 ];
+
+// Public showcase repositories for the three platform editions. They hold the README, screenshots and architecture
+// notes only: the source stays private and access is granted on request.
+export const showcase = {
+    title: 'Platform showcases',
+    summary: 'The identity, document and guest platforms are private code, so each has a public showcase repository: what it does, how it is built, screenshots and the live demo. Source access is granted on request.',
+    links: [
+        { name: 'Identity platform', kind: 'SSO', url: 'https://github.com/DawitBK/sso-showcase', demo: 'https://saas-portal-iota.vercel.app/sso/portal', note: 'OpenID Connect provider, admin console and app launcher.' },
+        { name: 'Document platform', kind: 'DMS', url: 'https://github.com/DawitBK/dms-showcase', demo: 'https://saas-dms.vercel.app/dms', note: 'Records lifecycle, approvals, e-signing, retention and search.' },
+        { name: 'Guest platform', kind: 'GMS', url: 'https://github.com/DawitBK/gms-showcase', demo: 'https://saas-gms.vercel.app/gms', note: 'Visits, approvals, door credentials and reception check-in.' },
+    ],
+};
 
 export const experience = [
     {
