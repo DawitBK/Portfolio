@@ -43,8 +43,8 @@ const Navbar = () => {
             <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,border-color,box-shadow] duration-300 ${solid ? 'border-b border-line/80 bg-paper/75 shadow-[0_1px_0_rgb(var(--shadow)/0.03)] backdrop-blur-xl' : 'border-b border-transparent bg-transparent'}`}>
                 <div className="container-page flex h-16 items-center justify-between gap-4">
                     <a href="#top" className="group flex shrink-0 items-center gap-3" aria-label={`${person.name}, back to the top`}>
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-2 font-serif text-lg italic leading-none text-on-accent shadow-card transition-transform duration-300 group-hover:rotate-[-6deg]" aria-hidden="true">
-                            DK
+                        <span className="flex h-9 min-w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-2 px-2.5 font-serif text-[1.02rem] italic leading-none tracking-tight text-on-accent shadow-card transition-transform duration-300 group-hover:rotate-[-6deg]" aria-hidden="true">
+                            DBK
                         </span>
                         <span className="hidden font-serif text-xl min-[440px]:inline lg:hidden xl:inline">{person.name}</span>
                     </a>
