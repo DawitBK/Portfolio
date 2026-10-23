@@ -1,8 +1,8 @@
 export const resumeData = {
     personalInfo: {
         name: "Dawit Bayou Kassie",
-        title: "Lead Senior Software Engineer",
-        tagline: "Full-Stack, Cloud & DevOps Engineering | Applied AI",
+        title: "Solutions Architect & Full-Stack Engineer",
+        tagline: "NestJS, TypeScript, PostgreSQL | Identity, Multi-Tenant SaaS & DevOps",
         location: "Addis Ababa, Ethiopia",
         email: "dawitbk01@gmail.com",
         phone: "+251 921 640 101",
@@ -39,7 +39,7 @@ export const resumeData = {
     },
     experience: [
         {
-            title: "Lead Senior Software Engineer",
+            title: "Solutions Architect & Full Stack Engineer",
             company: "A multi-sector conglomerate",
             period: "2026 - Present",
             location: "Addis Ababa, Ethiopia (On-site)",
