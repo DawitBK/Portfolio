@@ -1,48 +1,55 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, Github, Linkedin } from 'lucide-react';
-import { resumeData } from '../data/resume';
+import Reveal from './Reveal';
+import { person } from '../data/content';
 
-const Contact = () => {
-    return (
-        <section id="contact" className="py-24 bg-white dark:bg-ink-950">
-            <div className="max-w-4xl mx-auto px-6 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <p className="section-kicker">06 / Contact</p>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-8 text-slate-900 dark:text-white">Let's Work Together</h2>
-                    <p className="text-slate-600 dark:text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
-                        Currently building out enterprise platforms full-time, and open to select freelance,
-                        consulting, and collaboration opportunities in full-stack, cloud/DevOps engineering, and applied AI.
-                    </p>
+const rows = [
+    ['Email', person.email, `mailto:${person.email}`],
+    ['Phone', person.phone, `tel:${person.phone.replace(/\s/g, '')}`],
+    ['GitHub', 'github.com/DawitBK', person.github],
+    ['LinkedIn', 'linkedin.com/in/dawit-b-kassie', person.linkedin],
+];
 
-                    <div className="flex flex-col md:flex-row justify-center gap-6 mb-16">
-                        <a href={`mailto:${resumeData.personalInfo.email}`} className="flex items-center justify-center gap-3 px-8 py-4 card rounded-xl hover:border-brand-500/50 transition-colors group">
-                            <Mail size={20} className="text-brand-500" />
-                            <span className="text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{resumeData.personalInfo.email}</span>
-                        </a>
-                        <a href={`tel:${resumeData.personalInfo.phone}`} className="flex items-center justify-center gap-3 px-8 py-4 card rounded-xl hover:border-brand-500/50 transition-colors group">
-                            <Phone size={20} className="text-brand-500" />
-                            <span className="text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{resumeData.personalInfo.phone}</span>
-                        </a>
+const Contact = () => (
+    <section id="contact" className="section">
+        <div className="container-page grid gap-14 lg:grid-cols-[1.2fr_1fr]">
+            <Reveal>
+                <p className="kicker mb-4">Contact</p>
+                <h2 className="font-serif text-5xl leading-[1.05] md:text-6xl">
+                    Hiring for a hard system?
+                    <span className="block italic text-accent">Let&apos;s talk.</span>
+                </h2>
+                <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+                    I am open to senior engineering, architecture and technical lead roles, in Addis Ababa or remote. Email is the fastest way to reach me.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                    <a href={`mailto:${person.email}`} className="btn btn-primary">
+                        Email me
+                    </a>
+                    <a href={person.resume} className="btn btn-ghost" target="_blank" rel="noreferrer">
+                        Download resume
+                    </a>
+                </div>
+            </Reveal>
+            <Reveal delay={80}>
+                <dl className="divide-y divide-line border-y border-line">
+                    {rows.map(([label, text, href]) => (
+                        <div key={label} className="grid grid-cols-[6rem_1fr] gap-4 py-4">
+                            <dt className="font-mono text-xs uppercase tracking-wider text-muted">{label}</dt>
+                            <dd>
+                                <a href={href} className="underline decoration-line underline-offset-4 hover:decoration-accent" target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+                                    {text}
+                                </a>
+                            </dd>
+                        </div>
+                    ))}
+                    <div className="grid grid-cols-[6rem_1fr] gap-4 py-4">
+                        <dt className="font-mono text-xs uppercase tracking-wider text-muted">Location</dt>
+                        <dd>{person.location}</dd>
                     </div>
-
-                    <div className="flex justify-center gap-8">
-                        <a href={resumeData.personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            <Github size={28} />
-                        </a>
-                        <a href={resumeData.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 dark:text-gray-500 hover:text-brand-500 transition-colors">
-                            <Linkedin size={28} />
-                        </a>
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    );
-};
+                </dl>
+            </Reveal>
+        </div>
+    </section>
+);
 
 export default Contact;

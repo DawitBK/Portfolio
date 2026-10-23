@@ -1,15 +1,20 @@
 import React from 'react';
-import { resumeData } from '../data/resume';
+import { person } from '../data/content';
 
-const Footer = () => {
-    return (
-        <footer className="bg-slate-50 dark:bg-ink-900 border-t border-slate-200 dark:border-ink-800 py-8">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500 dark:text-gray-600">
-                <p>&copy; {new Date().getFullYear()} {resumeData.personalInfo.name}. All rights reserved.</p>
-                <p>Built with React, Tailwind CSS & Framer Motion.</p>
-            </div>
-        </footer>
-    );
-};
+const Footer = () => (
+    <footer className="border-t border-line py-8">
+        <div className="container-page flex flex-col justify-between gap-2 text-sm text-muted sm:flex-row">
+            <p>
+                &copy; {new Date().getFullYear()} {person.name}
+            </p>
+            <p>
+                Built with React, Vite and Tailwind.{' '}
+                <a className="underline decoration-line underline-offset-4 hover:decoration-accent" href="https://github.com/DawitBK/Portfolio" target="_blank" rel="noreferrer">
+                    Source on GitHub
+                </a>
+            </p>
+        </div>
+    </footer>
+);
 
 export default Footer;
