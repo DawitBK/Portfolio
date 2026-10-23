@@ -34,7 +34,7 @@ const Hero = () => (
                         alt="Portrait of Dawit Bayou Kassie"
                         width="720"
                         height="732"
-                        className="aspect-[4/3] w-full bg-panel object-cover object-[50%_18%]"
+                        className="aspect-square w-full bg-panel object-cover object-[48%_0%]"
                         fetchpriority="high"
                     />
                     <dl className="divide-y divide-line text-sm">
