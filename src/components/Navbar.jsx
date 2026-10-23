@@ -3,9 +3,10 @@ import ThemeToggle from './ThemeToggle';
 import { person } from '../data/content';
 
 const links = [
+    ['What I do', '#capabilities'],
+    ['Lifecycle', '#lifecycle'],
     ['Work', '#work'],
     ['Live demos', '#demos'],
-    ['Approach', '#approach'],
     ['Experience', '#experience'],
     ['Contact', '#contact'],
 ];
