@@ -13,10 +13,10 @@ export const person = {
 export const headline = ['Systems whose', 'guarantees can be', 'checked.'];
 
 export const heroGuarantees = [
-    { text: 'A disabled person is signed out of every system', where: 'sso' },
+    { text: 'Deactivating an account signs the person out of every system', where: 'sso' },
     { text: 'Every journal entry balances at commit', where: 'retail-os' },
     { text: 'A session with no tenant sees nothing', where: 'jobpilot' },
-    { text: 'Only a person can approve an application', where: 'jobpilot' },
+    { text: 'No job application is submitted until a person approves it', where: 'jobpilot' },
 ];
 
 export const atAGlance = [
@@ -37,7 +37,7 @@ export const sections = {
     capabilities: {
         kicker: 'What I do',
         title: 'One engineer across the whole system.',
-        lede: 'My value is in the joins: requirement to design, design to code, code to operations, and engineers to the people who use what they build.',
+        lede: 'My value is in the joins: requirement to design, design to code, code to operations, and engineers to the people who use what they build. I work as part of a team: I help build one, train it, and learn from it.',
     },
     lifecycle: {
         kicker: 'How I deliver',
@@ -96,7 +96,7 @@ export const capabilities = [
     },
     {
         title: 'Technical leadership',
-        body: 'I write the BRD, FRS and TDD, report to executives, and train the people who operate the result. I direct engineers and AI coding agents, set the review standard, and keep decisions in writing so a team can carry on without me.',
+        body: 'I work as part of a team and help build one: I write the BRD, FRS and TDD, report to executives, and train the people who operate the result. I direct engineers and AI coding agents, set the review standard, mentor teammates and learn from them, and keep decisions in writing so a team can carry on without me.',
     },
 ];
 
@@ -151,7 +151,7 @@ export const production = [
     {
         title: 'Identity platform',
         tag: 'Employer system, private',
-        summary: 'Custom OpenID Connect single sign-on for the group\'s internal systems, with Active Directory integration, PKCE, an admin console and an app launcher. Back-channel logout ends a person\'s sessions in every connected app when they sign out or are disabled. Licences are signed offline.',
+        summary: 'Custom OpenID Connect single sign-on for the group\'s internal systems, with Active Directory integration, PKCE, an admin console and an app launcher. Back-channel logout ends a person\'s sessions in every connected app when they sign out or their account is deactivated. Licences are signed offline.',
         facts: ['831 automated tests', 'Back-channel logout', 'Offline-signed licences', 'Signed releases, tamper watcher'],
     },
     {
@@ -170,7 +170,7 @@ export const production = [
 
 export const openSource = {
     title: 'Open-source reference applications',
-    summary: 'Four applications on one stack that show the same discipline in public. Retail OS enforces double-entry accounting with a deferred database trigger. JobPilot isolates tenants with row-level security and lets only a person approve. All four use OpenID Connect sign-in.',
+    summary: 'Four applications on one stack that show the same discipline in public. Retail OS enforces double-entry accounting with a deferred database trigger. JobPilot isolates tenants with row-level security and submits no job application until a person approves it. All four use OpenID Connect sign-in.',
     facts: ['NestJS 12, Drizzle', 'PostgreSQL 18', 'Next.js 16', 'OpenAPI contracts'],
     links: [
         { label: 'Retail OS', note: 'point of sale and double-entry books', url: 'https://github.com/DawitBK/retail-os' },

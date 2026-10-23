@@ -30,7 +30,7 @@
 <div class="contact">Addis Ababa, Ethiopia &middot; +251 921 640 101 &middot; dawitbk01@gmail.com<br>linkedin.com/in/dawit-b-kassie &middot; github.com/DawitBK</div>
 
 <h2>Professional summary</h2>
-<p style="margin:0">Solutions architect and full-stack engineer with three-plus years building production systems: multi-tenant SaaS, enterprise internal platforms, centralized identity and ERP on Odoo. Strongest in Node.js, NestJS, TypeScript and PostgreSQL, with working range from UI/UX and frontend to CI/CD, cloud and applied AI. Known for making correctness checkable: rules enforced in the database, a test that proves each guarantee, and runbooks an operations team can follow. Owns projects end to end, from BRD/FRS/TDD authorship and architecture through build, deployment and verification, directing a mix of engineers and AI coding agents. BSc in Electrical &amp; Computer Engineering.</p>
+<p style="margin:0">Solutions architect and full-stack engineer with three-plus years building production systems: multi-tenant SaaS, enterprise internal platforms, centralized identity and ERP on Odoo. Strongest in Node.js, NestJS, TypeScript and PostgreSQL, with working range from UI/UX and frontend to CI/CD, cloud and applied AI. Known for making correctness checkable: rules enforced in the database, a test that proves each guarantee, and runbooks an operations team can follow. Owns projects end to end, from BRD/FRS/TDD authorship and architecture through build, deployment and verification, directing a mix of engineers and AI coding agents. A team worker: helps build teams, trains the people who operate and extend the systems, and learns from the people around them. BSc in Electrical &amp; Computer Engineering.</p>
 
 <h2>Technical skills</h2>
 <div class="skills">
@@ -50,7 +50,7 @@
 <div class="head"><span>Solutions Architect &amp; Full Stack Engineer &nbsp;<span class="org">Kerchanshe Group</span></span><span class="meta">2026 &ndash; Present &middot; Addis Ababa</span></div>
 <ul>
 <li>Lead architecture and delivery of the group's internal platform: a document and records system (EDAMS), a guest management system, a retail ERP and a central single sign-on service, coordinating engineers and AI coding agents.</li>
-<li>Built the single sign-on provider as a custom OpenID Connect service: authorization code with PKCE, signed tokens, Active Directory integration, an admin console, an application launcher, and back-channel logout that ends a person's sessions in every connected system when they sign out or are disabled.</li>
+<li>Built the single sign-on provider as a custom OpenID Connect service: authorization code with PKCE, signed tokens, Active Directory integration, an admin console, an application launcher, and back-channel logout that ends a person's sessions in every connected system when they sign out or their account is deactivated.</li>
 <li>Designed licensing and release security for the platform: offline-signed licences that systems verify without calling home (including a rule that a system tied to SSO ends with SSO), signed releases, a tamper watcher, and owner-only operations kept out of any agent's permissions.</li>
 <li>Replaced ad-hoc deployments with one repeatable release process: preflight checks, settings applied at release time with automatic rollback, backups, and step-by-step runbooks for the operations team.</li>
 <li>Run a verification discipline: more than 3,000 automated tests across the three systems (SSO 831, EDAMS 1,639, GMS 605) with generated status reports checked in CI, and independent code reviews whose findings are fixed before release. After catching AI agents falsely reporting finished work, every task requires live request/response and SQL output as proof.</li>
@@ -82,7 +82,7 @@
 <div class="tech">NestJS 12, Drizzle, PostgreSQL 18, Zod/OpenAPI, Next.js 16, Vitest, Turborepo</div>
 <ul>
 <li><b>Retail OS:</b> point of sale, weighted-average inventory and double-entry accounting where the stock and the books cannot disagree: balanced journals enforced by a deferred database trigger, immutable posted history, money as integer minor units, and tests for concurrent sales and credit limits.</li>
-<li><b>JobPilot:</b> multi-tenant job-search platform with row-level security as the isolation boundary, an 18-state application machine in which only a person can approve a submission, a hash-chained audit trail, and SSRF-safe feed discovery.</li>
+<li><b>JobPilot:</b> multi-tenant job-search platform with row-level security as the isolation boundary, an 18-state application machine in which no job application is submitted until a person approves it, a hash-chained audit trail, and SSRF-safe feed discovery.</li>
 <li><b>Martronics and Library Management:</b> rebuilds of two earlier apps with rotating refresh tokens and reuse detection, optimistic concurrency, idempotent writes, a transactional outbox and an OpenAPI contract. All four apps sign in through OpenID Connect with back-channel logout.</li>
 </ul></div>
 

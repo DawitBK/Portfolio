@@ -29,7 +29,7 @@ export const capabilityMeta = {
     'Applied AI': { icon: 'sparkle', groups: ['Build', 'Design'], tags: ['pgvector', 'Full-text search', 'Tool calling', 'Policy controls'] },
     'DevOps and release engineering': { icon: 'terminal', groups: ['Deliver'], tags: ['GitHub Actions', 'Docker', 'Kubernetes', 'Terraform'] },
     'Quality engineering': { icon: 'verify', groups: ['Deliver', 'Secure'], tags: ['Unit', 'Integration', 'End-to-end', '3,000+ tests'] },
-    'Technical leadership': { icon: 'people', groups: ['Lead', 'Deliver'], tags: ['BRD, FRS, TDD', 'Executive reports', 'Training', 'Code review'] },
+    'Technical leadership': { icon: 'people', groups: ['Lead', 'Deliver'], tags: ['BRD, FRS, TDD', 'Executive reports', 'Team building', 'Training', 'Code review'] },
 };
 
 export const securityIcons = {
@@ -56,5 +56,5 @@ export const mapApps = [
 export const guaranteeRules = {
     sso: { identity: true, apps: 'all', db: false, via: ['Back-channel logout'] },
     'retail-os': { identity: false, apps: ['retail-os'], db: true, via: ['Deferred database trigger'] },
-    jobpilot: { identity: false, apps: ['jobpilot'], db: true, via: ['Row-level security', 'A person approves'] },
+    jobpilot: { identity: false, apps: ['jobpilot'], db: true, via: ['Row-level security', 'Human approval gate'] },
 };
