@@ -2,28 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Metric-matched local fallbacks keep the first paint close to the final layout while the web fonts load. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90.2%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Times New Roman');
+  size-adjust: 88%;
+  ascent-override: 98%;
+  descent-override: 28%;
+  line-gap-override: 0%;
+}
+
 @layer base {
   :root {
-    --paper: 250 249 246;
+    color-scheme: light;
+    --paper: 247 248 250;
     --panel: 255 255 255;
-    --ink: 20 23 26;
-    --muted: 91 97 104;
-    --line: 228 226 220;
-    --accent: 14 116 144;
-    --accent-soft: 224 242 246;
+    --sunken: 240 242 246;
+    --ink: 13 18 25;
+    --muted: 80 89 101;
+    --line: 222 227 234;
+    --accent: 12 112 140;
+    --accent-2: 43 90 220;
+    --accent-soft: 225 243 248;
+    --on-accent: 255 255 255;
+    --ok: 21 128 61;
+    --shadow: 15 23 42;
   }
   .dark {
-    --paper: 14 17 20;
-    --panel: 21 26 31;
-    --ink: 232 234 237;
-    --muted: 150 158 166;
-    --line: 36 43 50;
-    --accent: 94 200 220;
-    --accent-soft: 20 44 52;
+    color-scheme: dark;
+    --paper: 9 12 16;
+    --panel: 16 21 27;
+    --sunken: 6 9 12;
+    --ink: 233 237 241;
+    --muted: 148 158 171;
+    --line: 33 41 51;
+    --accent: 96 203 224;
+    --accent-2: 135 165 255;
+    --accent-soft: 16 42 51;
+    --on-accent: 5 18 24;
+    --ok: 74 222 128;
+    --shadow: 0 0 0;
   }
+  /* A permanently dark surface, used for bands and the console so the page has rhythm in light mode too. */
+  .scope-dark {
+    color-scheme: dark;
+    --paper: 10 14 19;
+    --panel: 17 23 30;
+    --sunken: 6 9 13;
+    --ink: 233 237 241;
+    --muted: 152 162 175;
+    --line: 36 45 56;
+    --accent: 100 206 227;
+    --accent-2: 135 165 255;
+    --accent-soft: 17 45 55;
+    --on-accent: 5 18 24;
+    --ok: 74 222 128;
+    --shadow: 0 0 0;
+  }
+
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 4.5rem;
+    scrollbar-gutter: stable;
     @apply antialiased;
   }
   /* On large monitors the type and spacing grow with the frame, so a wide layout stays comfortable and does not just spread out. */
@@ -38,14 +86,30 @@
     }
   }
   body {
-    @apply bg-paper text-ink font-sans overflow-x-hidden;
+    @apply bg-paper font-sans text-ink;
+    overflow-x: hidden;
+    overflow-x: clip;
     font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
   ::selection {
-    @apply bg-accent/25;
+    background: rgb(var(--accent) / 0.28);
   }
   :focus-visible {
-    @apply outline outline-2 outline-offset-2 outline-accent;
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 0.375rem;
+  }
+  [tabindex='-1']:focus {
+    outline: none;
   }
 }
 
@@ -54,46 +118,212 @@
     @apply mx-auto w-full px-6 md:w-[88%] md:max-w-[2400px] md:px-0;
   }
   .kicker {
-    @apply font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent;
+    @apply inline-flex items-center gap-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.18em] text-accent;
   }
+  .kicker::before {
+    content: '';
+    @apply h-px w-7 bg-accent/60;
+  }
+  /* Sections land with their heading a little below the fixed bar, whatever their own top padding is. */
   .section {
-    @apply border-t border-line py-24 md:py-36;
+    @apply relative py-16 md:py-28;
+    scroll-margin-top: -2.5rem;
+  }
+  @media (min-width: 768px) {
+    .section {
+      scroll-margin-top: -5.5rem;
+    }
   }
   .h-section {
-    @apply font-serif text-4xl leading-[1.08] md:text-6xl;
+    @apply font-serif text-[2.5rem] leading-[1.04] tracking-[-0.012em] sm:text-5xl xl:text-[3.5rem];
+  }
+  .lede {
+    @apply text-[1.05rem] leading-[1.7] text-muted md:text-lg;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-panel shadow-card;
   }
   .chip {
-    @apply inline-flex items-center rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.7rem] text-muted;
+    @apply inline-flex items-center rounded-full border border-line bg-paper/60 px-2.5 py-1 font-mono text-[0.7rem] leading-none text-muted;
+  }
+  .kbd {
+    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded border border-line bg-sunken px-1 font-mono text-[0.68rem] leading-none text-muted;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-medium transition-colors;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium transition duration-200;
   }
   .btn-primary {
-    @apply bg-ink text-paper hover:bg-accent;
+    @apply bg-gradient-to-r from-accent to-accent-2 text-on-accent shadow-card hover:-translate-y-0.5 hover:shadow-glow hover:brightness-110 active:translate-y-0;
   }
   .btn-ghost {
-    @apply border border-line text-ink hover:border-ink;
+    @apply border border-line bg-panel/70 text-ink backdrop-blur hover:-translate-y-0.5 hover:border-accent/60 hover:bg-panel active:translate-y-0;
+  }
+  .text-gradient {
+    background: linear-gradient(100deg, rgb(var(--accent)) 10%, rgb(var(--accent-2)) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid {
+    background-image: linear-gradient(to right, rgb(var(--line) / 0.55) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--line) / 0.55) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-dots {
+    background-image: radial-gradient(rgb(var(--line)) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  .fade-mask {
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, #000 30%, transparent 100%);
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, #000 30%, transparent 100%);
+  }
+
+  /* Pointer-follow spotlight: --mx and --my are set by usePointerEffects. */
+  .spot {
+    position: relative;
+    isolation: isolate;
+  }
+  .spot::before,
+  .spot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .spot::before {
+    z-index: -1;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.13), transparent 62%);
+  }
+  .spot::after {
+    padding: 1px;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.85), transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+  @media (hover: hover) {
+    .spot:hover::before,
+    .spot:hover::after {
+      opacity: 1;
+    }
+  }
+
+  /* System map */
+  .map-edge {
+    fill: none;
+    stroke: rgb(var(--line));
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+  .map-edge-lit {
+    fill: none;
+    stroke: rgb(var(--accent));
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-dasharray: 5 7;
+    animation: flow 0.9s linear infinite;
+    filter: drop-shadow(0 0 4px rgb(var(--accent) / 0.55));
+  }
+  .map-node rect {
+    fill: rgb(var(--panel));
+    stroke: rgb(var(--line));
+    stroke-width: 1.25;
+    transition: fill 0.3s, stroke 0.3s;
+  }
+  .map-node[data-lit='true'] rect {
+    fill: rgb(var(--accent) / 0.1);
+    stroke: rgb(var(--accent));
+    filter: drop-shadow(0 0 10px rgb(var(--accent) / 0.35));
+  }
+  .map-node[data-soft='true'] rect {
+    stroke: rgb(var(--accent) / 0.55);
+  }
+  .map-port {
+    fill: rgb(var(--line));
+    transition: fill 0.3s;
+  }
+  .map-port[data-lit='true'] {
+    fill: rgb(var(--accent));
   }
 }
 
 @layer utilities {
   .reveal {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .reveal.is-visible {
     opacity: 1;
     transform: none;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-    html {
-      scroll-behavior: auto;
-    }
+  .draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 1.1s 0.9s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+  }
+  /* Clips decorative overflow (glows, rounded corners) without making the box programmatically scrollable. */
+  .clip {
+    overflow: hidden;
+    overflow: clip;
+  }
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes sweep {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Honour the visitor's motion setting everywhere: no parallax, spotlight, count-up, drawing or looping animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .map-edge-lit {
+    animation: none;
+  }
+  .spot::before,
+  .spot::after {
+    display: none;
+  }
+  .draw {
+    stroke-dashoffset: 0;
   }
 }

@@ -1,85 +1,68 @@
-import React, { useState } from 'react';
-import SectionHead from './SectionHead';
+import Icon from './Icon';
 import Reveal from './Reveal';
+import SectionHead from './SectionHead';
+import DemoAccess from './DemoAccess';
+import Showcase from './Showcase';
 import { demos, sections } from '../data/content';
 import { demoAccess } from '../data/demoAccess';
+import { hostOf } from '../lib/text';
 
-const CopyField = ({ label, value }) => {
-    const [copied, setCopied] = useState(false);
-    const copy = async () => {
-        try {
-            await navigator.clipboard.writeText(value);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 1800);
-        } catch {
-            /* clipboard blocked: the value is on screen to select by hand */
-        }
-    };
+const isOriginal = (d) => /first version/i.test(d.kind);
+
+const DemoCard = ({ demo, index }) => {
+    const original = isOriginal(demo);
     return (
-        <div>
-            <p className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">{label}</p>
-            <div className="mt-2 flex items-stretch overflow-hidden rounded-md border border-line bg-paper">
-                <code className="flex-1 select-all break-all px-4 py-3 font-mono text-[0.95rem]">{value}</code>
-                <button type="button" onClick={copy} className="border-l border-line px-4 text-sm font-medium text-accent transition-colors hover:bg-accent-soft" aria-label={`Copy ${label.toLowerCase()}`}>
-                    {copied ? 'Copied' : 'Copy'}
-                </button>
-            </div>
-        </div>
+        <Reveal as="li" delay={(index % 3) * 70} className="sm:max-lg:last:col-span-2">
+            <a
+                href={demo.url}
+                target="_blank"
+                rel="noreferrer"
+                className={`spot card group flex h-full flex-col clip transition duration-300 hover:-translate-y-1 hover:shadow-lift focus-visible:-translate-y-1 focus-visible:shadow-lift ${original ? 'border-dashed' : ''}`}
+            >
+                <div className="flex items-center gap-3 border-b border-line bg-sunken/70 px-4 py-2.5">
+                    <span aria-hidden="true" className="flex gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-line" />
+                        <span className="h-2 w-2 rounded-full bg-line" />
+                        <span className="h-2 w-2 rounded-full bg-line" />
+                    </span>
+                    <span className="flex min-w-0 flex-1 items-center gap-1.5 rounded-md bg-panel px-2.5 py-1 font-mono text-[0.68rem] text-muted">
+                        <Icon name="lock" size={10} className="shrink-0" />
+                        <span className="truncate">{hostOf(demo.url)}</span>
+                    </span>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center justify-between gap-3">
+                        <p className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">{demo.kind}</p>
+                        {demo.url === demoAccess.portal && <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-2.5 py-1 font-mono text-[0.62rem] font-medium uppercase tracking-wider text-on-accent">Start here</span>}
+                        {original && <span className="rounded-full border border-dashed border-line px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wider text-muted">Original</span>}
+                    </div>
+                    <h4 className="mt-4 font-serif text-[1.9rem] leading-[1.1]">{demo.name}</h4>
+                    <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{demo.note}</p>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-7 text-sm font-medium text-accent">
+                        Open demo
+                        <Icon name="arrowUpRight" size={15} className="transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        <span className="sr-only">: {demo.name} (opens in a new tab)</span>
+                    </span>
+                </div>
+            </a>
+        </Reveal>
     );
 };
 
-const Access = () => (
-    <Reveal className="mt-14 grid gap-10 rounded-xl border border-line bg-paper p-7 md:p-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16">
-        <div>
-            <p className="kicker mb-4">Demo access</p>
-            <h3 className="font-serif text-4xl leading-[1.1]">{demoAccess.title}</h3>
-            <p className="mt-4 max-w-xl text-[1.02rem] leading-[1.7] text-muted">{demoAccess.lede}</p>
-            <ol className="mt-7 space-y-3 text-[0.98rem] leading-relaxed">
-                {demoAccess.steps.map((s, i) => (
-                    <li key={s} className="flex gap-4">
-                        <span className="font-mono text-xs leading-[1.9] text-accent">{String(i + 1).padStart(2, '0')}</span>
-                        <span>{s}</span>
-                    </li>
-                ))}
-            </ol>
-            <ul className="mt-7 flex flex-wrap gap-2">
-                {demoAccess.roles.map((r) => (
-                    <li key={r} className="chip">
-                        {r}
-                    </li>
-                ))}
-            </ul>
-        </div>
-        <div className="flex flex-col gap-5 self-center">
-            <CopyField label="Email" value={demoAccess.email} />
-            <CopyField label="Password" value={demoAccess.password} />
-            <a href={demoAccess.portal} target="_blank" rel="noreferrer" className="btn btn-primary mt-1">
-                Open the identity portal
-            </a>
-            <p className="text-sm leading-relaxed text-muted">{demoAccess.note}</p>
-        </div>
-    </Reveal>
-);
-
 const Demos = () => (
-    <section id="demos" className="section bg-panel">
+    <section id="demos" className="section border-y border-line bg-sunken/50">
         <div className="container-page">
             <SectionHead {...sections.demos} />
-            <Access />
-            <ul className="mt-16 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-                {demos.map((d) => (
-                    <li key={d.name} className="bg-panel">
-                        <a href={d.url} target="_blank" rel="noreferrer" className="group flex h-full min-h-[13rem] flex-col justify-between gap-10 p-7 transition-colors hover:bg-accent-soft">
-                            <div>
-                                <p className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">{d.kind}</p>
-                                <h3 className="mt-3 font-serif text-3xl leading-tight">{d.name}</h3>
-                                <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{d.note}</p>
-                            </div>
-                            <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
-                                Open demo <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                            </span>
-                        </a>
-                    </li>
+            <DemoAccess />
+            <Showcase />
+
+            <Reveal className="mt-16 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-end sm:gap-4 md:mt-20">
+                <h3 className="font-serif text-4xl leading-[1.08] md:text-5xl">All demos</h3>
+                <p className="font-mono text-xs text-muted">{demos.length} live editions on demo data</p>
+            </Reveal>
+            <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-5">
+                {demos.map((d, i) => (
+                    <DemoCard key={d.name} demo={d} index={i} />
                 ))}
             </ul>
         </div>

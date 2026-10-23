@@ -6,7 +6,8 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Dawit Bayou Kassie, solutions architect and full-stack engineer in Addis Ababa. NestJS, TypeScript, PostgreSQL, OpenID Connect single sign-on, multi-tenant SaaS and DevOps. Projects, resume and contact." />
-  <meta name="theme-color" content="#faf9f6" />
+  <meta name="theme-color" content="#f7f8fa" />
+  <meta name="color-scheme" content="light dark" />
   <link rel="canonical" href="https://dawitbkportfolio.vercel.app/" />
   <meta property="og:type" content="profile" />
   <meta property="og:site_name" content="Dawit Bayou Kassie" />
@@ -41,7 +42,11 @@
         var stored = localStorage.getItem('portfolio-theme');
         if (stored) theme = JSON.parse(stored).state.theme;
       } catch (e) { /* storage blocked or unreadable: follow the system */ }
-      if (theme === 'dark') document.documentElement.classList.add('dark');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', '#090c10');
+      }
     })();
   </script>
 </head>

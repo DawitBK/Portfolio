@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 // Fades a block in once as it scrolls into view. Without IntersectionObserver the block is simply visible.
-const Reveal = ({ as: Tag = 'div', className = '', delay = 0, children }) => {
+const Reveal = ({ as: tag = 'div', className = '', delay = 0, children, ...rest }) => {
+    const Component = tag;
     const ref = useRef(null);
 
     useEffect(() => {
@@ -18,16 +19,16 @@ const Reveal = ({ as: Tag = 'div', className = '', delay = 0, children }) => {
                     observer.disconnect();
                 }
             },
-            { threshold: 0.12 }
+            { threshold: 0.1, rootMargin: '0px 0px -4% 0px' }
         );
         observer.observe(el);
         return () => observer.disconnect();
     }, []);
 
     return (
-        <Tag ref={ref} className={`reveal ${className}`} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>
+        <Component ref={ref} className={`reveal ${className}`} style={delay ? { transitionDelay: `${delay}ms` } : undefined} {...rest}>
             {children}
-        </Tag>
+        </Component>
     );
 };
 
