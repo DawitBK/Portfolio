@@ -47,6 +47,9 @@ const Hero = () => {
                         {person.role}
                     </p>
                     <h1 className="font-serif text-[2.9rem] leading-[1.02] tracking-[-0.015em] sm:text-6xl md:text-7xl xl:text-[5.5rem] 2xl:text-[6.25rem]">
+                        <span className="sr-only">
+                            {person.name}, {person.role} in {person.location}.{' '}
+                        </span>
                         {headline.map((line, i) => (
                             <span key={line} className="block animate-rise" style={{ animationDelay: `${120 + i * 110}ms` }}>
                                 {i === lastLine ? (

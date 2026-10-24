@@ -1,9 +1,16 @@
+import { useSyncExternalStore } from 'react';
 import { useThemeStore } from '../store/themeStore';
 import Icon from './Icon';
 
+const subscribeNothing = () => () => {};
+
 const ThemeToggle = ({ className = '' }) => {
-    const theme = useThemeStore((s) => s.theme);
+    const stored = useThemeStore((s) => s.theme);
     const toggleTheme = useThemeStore((s) => s.toggleTheme);
+    // The page is rendered at build time, where the system theme is unknown: show the light button until mounted so the
+    // markup matches, then follow the real theme.
+    const mounted = useSyncExternalStore(subscribeNothing, () => true, () => false);
+    const theme = mounted ? stored : 'light';
     const next = theme === 'dark' ? 'light' : 'dark';
     return (
         <button

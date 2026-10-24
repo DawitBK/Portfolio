@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://dawitbkportfolio.vercel.app/sitemap.xml

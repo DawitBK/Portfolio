@@ -9,7 +9,14 @@ const Footer = () => (
                 &copy; {new Date().getFullYear()} {person.name}
             </p>
             <p>
-                Built with React, Vite and Tailwind.{' '}
+                <a className="underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-accent" href="/resume">
+                    Resume
+                </a>{' '}
+                ·{' '}
+                <a className="underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-accent" href="/projects">
+                    Projects
+                </a>{' '}
+                · Built with React, Vite and Tailwind.{' '}
                 <a className="underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-accent" href="https://github.com/DawitBK/Portfolio" target="_blank" rel="noreferrer">
                     Source on GitHub
                 </a>

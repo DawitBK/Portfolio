@@ -8,6 +8,7 @@ const darkQuery = () => (typeof window !== 'undefined' ? window.matchMedia?.('(p
 const systemTheme = () => (darkQuery()?.matches ? 'dark' : 'light');
 
 const applyTheme = (theme) => {
+    if (typeof document === 'undefined') return; // the build-time render has no page to style
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLOUR[theme]);
 };

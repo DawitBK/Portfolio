@@ -209,6 +209,8 @@ export const experience = [
         role: 'Solutions Architect & Full Stack Engineer',
         org: 'A multi-sector conglomerate',
         period: '2026 to present',
+        start: '2026',
+        end: null,
         place: 'Addis Ababa, on-site',
         points: [
             'Lead architecture and delivery for four internal platforms (identity, records, visitors and retail ERP), directing engineers and AI coding agents.',
@@ -222,6 +224,8 @@ export const experience = [
         role: 'Web Developer',
         org: 'Edge Communication Technologies P.L.C',
         period: 'Sep to Oct 2025',
+        start: '2025-09',
+        end: '2025-10',
         place: 'Addis Ababa, on-site',
         points: [
             'Built corporate web platforms and internal applications.',
@@ -232,6 +236,8 @@ export const experience = [
         role: 'Full Stack, Cloud & DevOps Engineer',
         org: 'Freelance',
         period: 'Jan 2023 to 2025',
+        start: '2023-01',
+        end: '2025',
         place: 'Remote',
         points: [
             'Designed, built and deployed MERN and PERN applications for clients in several industries.',
@@ -257,3 +263,22 @@ export const education = [
 ];
 
 export const languages = 'English (fluent) and Amharic (native)';
+
+// What search engines, AI assistants and job platforms read. scripts/postbuild.mjs turns this and the data above into the
+// page title, the structured data, llms.txt, llms-full.txt, resume.json and the /resume and /projects pages, so nothing is
+// written twice.
+export const seo = {
+    title: 'Dawit Bayou Kassie · Software Engineer in Addis Ababa, Ethiopia',
+    description: 'Software engineer and solutions architect in Addis Ababa, Ethiopia: NestJS, TypeScript, PostgreSQL, single sign-on, ERP and multi-tenant SaaS. Open to senior roles.',
+    countryCode: 'ET',
+    summary:
+        'Dawit Bayou Kassie is a software engineer and solutions architect based in Addis Ababa, Ethiopia. He designs, builds and runs identity, records, access and ERP systems on NestJS, TypeScript and PostgreSQL, and is open to senior engineering, architecture and technical lead roles in Addis Ababa or remote.',
+    topics: [
+        'Software engineering', 'Solutions architecture', 'NestJS', 'TypeScript', 'Node.js', 'PostgreSQL', 'Next.js', 'React', 'OpenID Connect',
+        'Single sign-on', 'Multi-tenant SaaS', 'ERP', 'Odoo', 'Docker', 'DevOps', 'Applied AI',
+    ],
+    spoken: [
+        { name: 'English', code: 'en', level: 'fluent' },
+        { name: 'Amharic', code: 'am', level: 'native' },
+    ],
+};
