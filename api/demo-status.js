@@ -8,27 +8,30 @@
 //                     The app answers 200 with {"enabled": true} only when it can reach the identity provider; when it cannot, it
 //                     answers 503, and a sign-in click would fail. Optional: without it only the health check decides.
 // Without DEMO_HEALTH_URL the answer is "unknown" and the page behaves as if nothing is wrong.
+//
+// `checks` says what each check saw (an HTTP status, or the kind of error), so an "offline" can be told apart: a timeout means the machine
+// cannot be reached, a 502 means the tunnel is up but the machine is not behind it, a 503 means the identity provider cannot be reached
+// by the app. It carries nothing but those words.
 const TIMEOUT_MS = 4500;
 
-async function healthy(url) {
+async function seen(url, accept) {
     try {
         const reply = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS), redirect: 'manual', headers: { accept: 'application/json' } });
-        return reply.status === 200;
-    } catch {
-        return false;
+        return { status: reply.status, ok: reply.status === 200 && (await accept(reply)) };
+    } catch (error) {
+        return { status: error?.name === 'TimeoutError' ? 'timeout' : 'unreachable', ok: false };
     }
 }
 
-async function signInWorks(url) {
-    try {
-        const reply = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS), redirect: 'manual', headers: { accept: 'application/json' } });
-        if (reply.status !== 200) return false;
-        const body = await reply.json();
-        return body?.enabled === true;
-    } catch {
-        return false;
-    }
-}
+const healthy = (url) => seen(url, async () => true);
+const signInWorks = (url) =>
+    seen(url, async (reply) => {
+        try {
+            return (await reply.json())?.enabled === true;
+        } catch {
+            return false;
+        }
+    });
 
 export default async function handler(req, res) {
     res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=20');
@@ -39,6 +42,12 @@ export default async function handler(req, res) {
         return;
     }
     const started = Date.now();
-    const [serverUp, signIn] = await Promise.all([healthy(healthUrl), signInUrl ? signInWorks(signInUrl) : Promise.resolve(true)]);
-    res.status(200).json({ online: serverUp && signIn, checkedAt: new Date().toISOString(), ms: Date.now() - started });
+    const [health, signIn] = await Promise.all([healthy(healthUrl), signInUrl ? signInWorks(signInUrl) : Promise.resolve(null)]);
+    const online = health.ok && (signIn === null || signIn.ok);
+    res.status(200).json({
+        online,
+        checkedAt: new Date().toISOString(),
+        ms: Date.now() - started,
+        checks: { health: health.status, ...(signIn ? { signIn: signIn.status } : {}) },
+    });
 }
