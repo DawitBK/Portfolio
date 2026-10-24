@@ -19,7 +19,10 @@ async function seen(url, accept) {
         const reply = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS), redirect: 'manual', headers: { accept: 'application/json' } });
         return { status: reply.status, ok: reply.status === 200 && (await accept(reply)) };
     } catch (error) {
-        return { status: error?.name === 'TimeoutError' ? 'timeout' : 'unreachable', ok: false };
+        // The network error code when there is one (ENOTFOUND: the name does not resolve; ECONNREFUSED / ECONNRESET: something answered and closed;
+        // a certificate code: the tunnel answered with the wrong identity), otherwise "unreachable".
+        const code = error?.cause?.code ?? error?.code;
+        return { status: error?.name === 'TimeoutError' ? 'timeout' : typeof code === 'string' ? code : 'unreachable', ok: false };
     }
 }
 
