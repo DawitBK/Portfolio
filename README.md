@@ -37,10 +37,10 @@ Everything the site needs is in this repository: `git clone https://github.com/D
 
 Two things live outside git on purpose:
 
-- **Vercel settings.** The site deploys from `main` to the Vercel project `portfolio`. That project holds one production variable, `DEMO_HEALTH_URL`, the public health address of the demo server's identity service, read by `api/demo-status.js` to show whether the live demos are online. In development the status check is simply unavailable and the page behaves as if the demos are up. To inspect or change the variable on a new machine: `vercel link --project portfolio`, then `vercel env ls` (the `.vercel/` folder is git-ignored).
+- **Vercel settings.** The site deploys from `main` to the Vercel project `portfolio`. That project holds two production variables read by `api/demo-status.js` to show whether the live demos are online: `DEMO_HEALTH_URL`, the public health address of the demo server's identity service, and `DEMO_SIGNIN_URL`, the public sign-in settings address of one product app (`.../app-api/retail-os/api/v1/auth/oidc/config`). The demos count as online only when both answer, so "online" means a visitor can sign in, not just that a process is running. In development the status check is simply unavailable and the page behaves as if the demos are up. To inspect or change the variable on a new machine: `vercel link --project portfolio`, then `vercel env ls` (the `.vercel/` folder is git-ignored).
 - **The resume PDF.** `resume/resume.html` is the source. Run `node scripts/make-resume-pdf.mjs` (it explains the one-time Playwright install) to rebuild the PDF in `resume/` and `public/`, then commit both.
 
-The demo sandbox login is public by design and lives in `src/data/demoAccess.js`. The demo servers themselves run on one PC, described in the [meridian-infra](https://github.com/DawitBK/meridian-infra) runbook.
+The demo sandbox login is public by design and lives in `src/data/demoAccess.js`. The demo servers themselves run on one PC with Docker Compose, from a private platform repository.
 
 ## Deployment
 
