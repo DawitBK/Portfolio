@@ -47,7 +47,7 @@ export const sections = {
     work: {
         kicker: 'Selected work',
         title: 'Systems built to this standard.',
-        lede: 'Three enterprise platforms I built for an employer, and four applications I publish in the open.',
+        lede: 'Three enterprise platforms I built for an employer, the release security behind them, and four applications I publish in the open.',
     },
     demos: {
         kicker: 'Live demos',
@@ -151,20 +151,50 @@ export const production = [
     {
         title: 'Identity platform',
         tag: 'Employer system, private',
-        summary: 'Custom OpenID Connect single sign-on for the group\'s internal systems, with Active Directory integration, PKCE, an admin console and an app launcher. Back-channel logout ends a person\'s sessions in every connected app when they sign out or their account is deactivated. Licences are signed offline.',
+        summary: 'Every internal system used to have its own login. I replaced them with one custom OpenID Connect provider on the company\'s existing Active Directory.',
+        points: [
+            'Authorization code with PKCE, signed tokens, an admin console and an application launcher for every connected system.',
+            'The hard part is signing out: when someone signs out, leaves or is deactivated, a signed back-channel notice reaches every connected app and ends their sessions there, not only in the portal.',
+            'Licences are signed offline and verified without calling home, and a system tied to single sign-on stops when single sign-on does.',
+        ],
+        stack: ['Node.js', 'Express', 'TypeScript', 'PostgreSQL', 'Next.js', 'OpenID Connect'],
         facts: ['834 automated tests', 'Back-channel logout', 'Offline-signed licences', 'Signed releases, tamper watcher'],
     },
     {
         title: 'Document and records platform',
         tag: 'Employer system, private',
-        summary: 'Archive management with full-text search and an opt-in AI assistant that answers questions over documents and audit logs, summarises documents and extracts metadata, behind per-tenant consent and usage controls. Fifty-three permissions with per-document access rules, hash-chained audit logs, e-signatures, legal hold, retention schedules and AES-256-GCM encryption at rest.',
+        summary: 'An archive staff can search, govern and question, with every access rule and every change on record.',
+        points: [
+            'The full records lifecycle: capture, approval, e-signatures, retention schedules and legal hold, with full-text search across the archive.',
+            'An opt-in AI assistant answers questions over documents and audit logs, summarises documents and extracts metadata, behind per-tenant consent and usage controls.',
+            'Fifty-three permissions across seven roles with per-document access rules; audit logs are hash-chained so an edit shows, and files are encrypted at rest with AES-256-GCM.',
+        ],
+        stack: ['Node.js', 'Express', 'TypeScript', 'Next.js', 'PostgreSQL', 'MinIO', 'Redis', 'BullMQ', 'Meilisearch'],
         facts: ['1,639 automated tests', '53 permissions, 7 roles', 'Hash-chained audit', 'Legal hold and retention'],
     },
     {
         title: 'Guest management platform',
         tag: 'Employer system, private',
-        summary: 'Multi-office visitor management with approvals and escalation, door-access hardware, one-time-code sign-in, QR and PIN entry, and ID scanning with watchlist screening. Taken through QA and UAT, and live on the company\'s own server behind an Apache reverse proxy.',
+        summary: 'Visitors, approvals and door access across several offices, live on the company\'s own server.',
+        points: [
+            'Seven roles and an approval and escalation workflow, with credentials delivered to the visitor in real time over WebSockets.',
+            'Door-access hardware, one-time-code sign-in, QR and PIN credentials, and ID scanning with watchlist screening at reception.',
+            'Taken through QA and UAT to a live deployment behind an Apache reverse proxy, and I trained the IT staff who operate it.',
+        ],
+        stack: ['Node.js', 'Express', 'TypeScript', 'Next.js', 'PostgreSQL', 'Redis', 'BullMQ', 'WebSockets', 'Docker'],
         facts: ['605 automated tests', '7 roles', 'Real-time WebSockets', 'IT staff trained'],
+    },
+    {
+        title: 'Release and licensing security',
+        tag: 'Employer platform, private',
+        summary: 'A repeatable, verifiable way to ship the platform to a server that only a few people may touch.',
+        points: [
+            'Every release runs preflight checks first. Settings change only at apply time, with a backup taken beforehand and automatic rollback if anything fails.',
+            'Releases are signed and a tamper watcher reports changes. Owner-only operations stay outside any automated agent\'s permissions.',
+            'Every change is rehearsed in a production-like environment first, and independent reviews of my own work are fixed before release.',
+        ],
+        stack: ['Node.js', 'PowerShell', 'Cryptographic signing'],
+        facts: ['Rehearsed, with rollback', 'Signed releases', 'Tamper watcher', 'Preflight checks'],
     },
 ];
 
@@ -173,10 +203,54 @@ export const openSource = {
     summary: 'Four applications on one stack that show the same discipline in public. Retail OS enforces double-entry accounting with a deferred database trigger. JobPilot isolates tenants with row-level security and submits no job application until a person approves it. All four use OpenID Connect sign-in.',
     facts: ['NestJS 12, Drizzle', 'PostgreSQL 18', 'Next.js 16', 'OpenAPI contracts'],
     links: [
-        { label: 'Retail OS', note: 'point of sale, double-entry books and forecasting', url: 'https://github.com/DawitBK/retail-os' },
-        { label: 'JobPilot', note: 'multi-tenant job search', url: 'https://github.com/DawitBK/jobpilot' },
-        { label: 'Martronics', note: 'e-commerce', url: 'https://github.com/DawitBK/martronics' },
-        { label: 'Library Management', note: 'circulation and catalogue', url: 'https://github.com/DawitBK/library-management-system' },
+        {
+            label: 'Retail OS',
+            note: 'point of sale, double-entry books and forecasting',
+            url: 'https://github.com/DawitBK/retail-os',
+            summary: 'A point of sale where the shelf and the books cannot disagree.',
+            points: [
+                'Every journal entry balances: the application checks it, and a deferred database trigger checks it again at commit.',
+                'Posted history is append-only in the database itself; a void is the only change allowed, so a hand-typed UPDATE cannot rewrite the books.',
+                'Two tills cannot sell the last unit twice or push a customer past a credit limit, and money is integer minor units, never a float. Sales analytics, forecasts and a cash-flow statement sit on top.',
+            ],
+            stack: ['NestJS 12', 'Drizzle', 'PostgreSQL 18', 'Next.js 16'],
+        },
+        {
+            label: 'JobPilot',
+            note: 'multi-tenant job search',
+            url: 'https://github.com/DawitBK/jobpilot',
+            summary: 'Job search where the software proposes and only a person approves.',
+            points: [
+                'Tenant isolation is the database\'s job: with row-level security, a session that names no tenant sees nothing.',
+                'Applications move through an 18-state machine, and a database constraint refuses an approval recorded by the AI or the browser worker.',
+                'AI-drafted documents are checked sentence by sentence against the candidate\'s record, and anything flagged stops for a person. The audit trail is hash-chained.',
+            ],
+            stack: ['NestJS 12', 'Drizzle', 'PostgreSQL 18', 'Row-level security'],
+        },
+        {
+            label: 'Martronics',
+            note: 'e-commerce',
+            url: 'https://github.com/DawitBK/martronics',
+            summary: 'An electronics store with a catalogue, cart and checkout, built as enterprise-grade services.',
+            points: [
+                'Rotating refresh tokens with reuse detection, and optimistic concurrency on every write.',
+                'Checkout is idempotent, so a retried request never places an order twice, and events leave through a transactional outbox.',
+                'An OpenAPI contract, and sign-in through OpenID Connect with back-channel logout.',
+            ],
+            stack: ['NestJS 12', 'Drizzle', 'PostgreSQL 18', 'Next.js 16'],
+        },
+        {
+            label: 'Library Management',
+            note: 'circulation and catalogue',
+            url: 'https://github.com/DawitBK/library-management-system',
+            summary: 'A public catalogue and a staff circulation desk.',
+            points: [
+                'Holds are queued fairly: a returned copy goes to the member who has waited longest.',
+                'Overdue loans accrue fines, and unpaid fines above a limit block further borrowing.',
+                'Idempotent lending, optimistic concurrency, an OpenAPI contract and OpenID Connect sign-in with back-channel logout.',
+            ],
+            stack: ['NestJS 12', 'Drizzle', 'PostgreSQL 18', 'Next.js 16'],
+        },
     ],
 };
 
@@ -212,8 +286,10 @@ export const experience = [
         place: 'Addis Ababa, on-site',
         points: [
             'Lead architecture and delivery for four internal platforms (identity, records, visitors and retail ERP), directing engineers and AI coding agents.',
+            'Built the single sign-on provider as a custom OpenID Connect service: authorization code with PKCE, signed tokens, Active Directory integration, an admin console, an application launcher, and back-channel logout that ends a person\'s sessions in every connected system when they sign out or their account is deactivated.',
+            'Designed licensing and release security for the platform: offline-signed licences that systems verify without calling home, signed releases, a tamper watcher, and owner-only operations kept out of any agent\'s permissions.',
             'Own the full lifecycle: requirements, design, build, verification, release and operator training, with preflight checks, signed releases and automatic rollback.',
-            'Built three of the platforms to a tested standard (834, 1,639 and 605 automated tests) and introduced independent code reviews, with every finding fixed.',
+            'Built three of the platforms to a tested standard (834, 1,639 and 605 automated tests) and introduced independent code reviews, with every finding fixed. After catching AI agents reporting work that never happened, every task requires live request and response or SQL output as proof.',
             'Took the guest platform through QA and UAT to a live deployment on the company\'s own server, and trained the IT staff who run it.',
             'Write the requirements (BRD, FRS), technical design documents, executive reports and training material.',
         ],
@@ -226,8 +302,9 @@ export const experience = [
         end: '2025-10',
         place: 'Addis Ababa, on-site',
         points: [
-            'Built corporate web platforms and internal applications.',
-            'Standardised shared components and the deployment process, and reduced page load times.',
+            'Built and maintained responsive corporate platforms and internal business applications for public-facing and operational use.',
+            'Improved frontend consistency, the deployment workflow and page load times by standardising the component architecture.',
+            'Scoped requirements with technical and operational teams and delivered production-ready systems on tight timelines.',
         ],
     },
     {
@@ -238,8 +315,9 @@ export const experience = [
         end: '2025',
         place: 'Remote',
         points: [
-            'Designed, built and deployed MERN and PERN applications for clients in several industries.',
-            'Set up CI/CD pipelines and hosted the applications on AWS and Azure.',
+            'Designed, built and deployed full-stack applications for clients in several industries (MERN and PERN), from scoping to production launch.',
+            'Built backend APIs, authentication and database schemas around each client\'s real read and write patterns.',
+            'Set up container and CI/CD pipelines with Docker and GitHub Actions, and managed AWS and Azure deployments including networking, storage, compute and IAM.',
         ],
     },
 ];

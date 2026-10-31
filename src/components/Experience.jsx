@@ -61,7 +61,7 @@ const Role = ({ job, index, open, onToggle }) => {
 };
 
 const Experience = () => {
-    const [openRoles, setOpenRoles] = useState(() => new Set([0]));
+    const [openRoles, setOpenRoles] = useState(() => new Set(experience.map((_, i) => i)));
     const allOpen = openRoles.size === experience.length;
     const toggle = (i) =>
         setOpenRoles((prev) => {

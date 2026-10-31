@@ -220,13 +220,13 @@ ${list(education.map((e) => `${esc(e.title)}, ${esc(e.place)}, ${esc(e.year)}`))
 
 const projectsBody = `
 <h1>Projects and systems</h1>
-<p class="lede">What ${esc(person.name)} has built: three enterprise platforms for an employer, four open-source applications and public showcases of the private systems.</p>
+<p class="lede">What ${esc(person.name)} has built: three enterprise platforms for an employer and the release security behind them, four open-source applications and public showcases of the private systems.</p>
 <h2>Enterprise platforms (employer systems, private source)</h2>
-${production.map((p) => `<h3>${esc(p.title)}</h3><p class="meta">${esc(p.tag)}</p><p>${esc(p.summary)}</p>${chips(p.facts)}`).join('\n')}
+${production.map((p) => `<h3>${esc(p.title)}</h3><p class="meta">${esc(p.tag)} · ${esc(p.stack.join(', '))}</p><p>${esc(p.summary)}</p>${list(p.points.map(esc))}${chips(p.facts)}`).join('\n')}
 <h2>${esc(openSource.title)}</h2>
 <p>${esc(openSource.summary)}</p>
 ${chips(openSource.facts)}
-${list(openSource.links.map((l) => `<a href="${esc(l.url)}">${esc(l.label)}</a>: ${esc(l.note)}`))}
+${openSource.links.map((l) => `<h3><a href="${esc(l.url)}">${esc(l.label)}</a></h3><p class="meta">${esc(l.stack.join(', '))}</p><p>${esc(l.summary)}</p>${list(l.points.map(esc))}`).join('\n')}
 <h2>${esc(showcase.title)}</h2>
 <p>${esc(showcase.summary)}</p>
 ${list(showcase.links.map((l) => `<a href="${esc(l.url)}">${esc(l.name)} (${esc(l.kind)})</a>: ${esc(l.note)} <a href="${esc(l.demo)}">Live demo</a>`))}
@@ -328,12 +328,12 @@ ${tests.map((t) => `- ${t}`).join('\n')}
 ${capabilities.map((x) => `### ${x.title}\n${x.body}`).join('\n\n')}
 
 ## Enterprise platforms (employer systems, private source)
-${production.map((p) => `### ${p.title}\n${p.summary}\n${p.facts.map((f) => `- ${f}`).join('\n')}`).join('\n\n')}
+${production.map((p) => `### ${p.title}\n${p.summary}\n${p.points.map((x) => `- ${x}`).join('\n')}\n${p.facts.map((f) => `- ${f}`).join('\n')}\n- Built with: ${p.stack.join(', ')}`).join('\n\n')}
 
 ## ${openSource.title}
 ${openSource.summary}
 
-${openSource.links.map((l) => `- [${l.label}](${l.url}): ${l.note}`).join('\n')}
+${openSource.links.map((l) => `### [${l.label}](${l.url})\n${l.summary}\n${l.points.map((x) => `- ${x}`).join('\n')}\n- Built with: ${l.stack.join(', ')}`).join('\n\n')}
 
 ## Experience
 ${experience.map((e) => `### ${e.role}, ${e.org} (${e.period}, ${e.place})\n${e.points.map((p) => `- ${p}`).join('\n')}`).join('\n\n')}
