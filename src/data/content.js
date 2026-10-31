@@ -175,8 +175,8 @@ export const openSource = {
     links: [
         { label: 'Retail OS', note: 'point of sale, double-entry books and forecasting', url: 'https://github.com/DawitBK/retail-os' },
         { label: 'JobPilot', note: 'multi-tenant job search', url: 'https://github.com/DawitBK/jobpilot' },
-        { label: 'Martronics', note: 'e-commerce', url: 'https://github.com/DawitBK/martronics/tree/next' },
-        { label: 'Library Management', note: 'circulation and catalogue', url: 'https://github.com/DawitBK/library-management-system/tree/next' },
+        { label: 'Martronics', note: 'e-commerce', url: 'https://github.com/DawitBK/martronics' },
+        { label: 'Library Management', note: 'circulation and catalogue', url: 'https://github.com/DawitBK/library-management-system' },
     ],
 };
 
