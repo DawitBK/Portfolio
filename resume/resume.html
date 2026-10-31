@@ -53,7 +53,7 @@
 <li>Built the single sign-on provider as a custom OpenID Connect service: authorization code with PKCE, signed tokens, Active Directory integration, an admin console, an application launcher, and back-channel logout that ends a person's sessions in every connected system when they sign out or their account is deactivated.</li>
 <li>Designed licensing and release security for the platform: offline-signed licences that systems verify without calling home (including a rule that a system tied to SSO ends with SSO), signed releases, a tamper watcher, and owner-only operations kept out of any agent's permissions.</li>
 <li>Replaced ad-hoc deployments with one repeatable release process: preflight checks, settings applied at release time with automatic rollback, backups, and step-by-step runbooks for the operations team.</li>
-<li>Run a verification discipline: more than 3,000 automated tests across the three systems (SSO 831, EDAMS 1,639, GMS 605) with generated status reports checked in CI, and independent code reviews whose findings are fixed before release. After catching AI agents falsely reporting finished work, every task requires live request/response and SQL output as proof.</li>
+<li>Run a verification discipline: more than 3,000 automated tests across the three systems (SSO 834, EDAMS 1,639, GMS 605) with generated status reports checked in CI, and independent code reviews whose findings are fixed before release. After catching AI agents falsely reporting finished work, every task requires live request/response and SQL output as proof.</li>
 <li>Own architecture documentation, requirements specifications, executive reporting and internal training material.</li>
 </ul>
 </div>
@@ -81,7 +81,7 @@
 <div class="proj"><div class="title">Open-source rebuilds: Retail OS, JobPilot, Martronics, Library Management &nbsp;<span class="meta" style="font-weight:400">github.com/DawitBK</span></div>
 <div class="tech">NestJS 12, Drizzle, PostgreSQL 18, Zod/OpenAPI, Next.js 16, Vitest, Turborepo</div>
 <ul>
-<li><b>Retail OS:</b> point of sale, weighted-average inventory and double-entry accounting where the stock and the books cannot disagree: balanced journals enforced by a deferred database trigger, immutable posted history, money as integer minor units, and tests for concurrent sales and credit limits.</li>
+<li><b>Retail OS:</b> point of sale, weighted-average inventory and double-entry accounting where the stock and the books cannot disagree: balanced journals enforced by a deferred database trigger, immutable posted history, money as integer minor units, and tests for concurrent sales and credit limits; sales analytics, reorder and sales forecasts, and a cash-flow statement.</li>
 <li><b>JobPilot:</b> multi-tenant job-search platform with row-level security as the isolation boundary, an 18-state application machine in which no job application is submitted until a person approves it, a hash-chained audit trail, and SSRF-safe feed discovery.</li>
 <li><b>Martronics and Library Management:</b> rebuilds of two earlier apps with rotating refresh tokens and reuse detection, optimistic concurrency, idempotent writes, a transactional outbox and an OpenAPI contract. All four apps sign in through OpenID Connect with back-channel logout.</li>
 </ul></div>
@@ -89,7 +89,7 @@
 <div class="proj"><div class="title">MOS: manufacturing-operations ERP on Odoo 20 &nbsp;<span class="meta" style="font-weight:400">private repository</span></div>
 <div class="tech">Python, Odoo 20, PostgreSQL, OpenID Connect, Node.js</div>
 <ul>
-<li>Customised Odoo 20 with 31 custom addons and more than 300 automated tests, covering gate and weighbridge, lab and quality, inbound receiving, procurement, inventory, approvals with separation of duties, payables, sales and production. Addons only, so Odoo itself stays upgradeable.</li>
+<li>Customised Odoo 20 with 42 custom addons and more than 500 automated tests, covering gate and weighbridge, lab and quality, inbound receiving, procurement, inventory, approvals with separation of duties, payables, sales and production. Addons only, so Odoo itself stays upgradeable.</li>
 <li>Added OpenID Connect sign-in (PKCE, account binding, back-channel logout) as an addon, and wrote the requirements specification and architecture decision records the build follows.</li>
 </ul></div>
 

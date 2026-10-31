@@ -76,7 +76,7 @@ export const capabilities = [
     },
     {
         title: 'ERP and business systems',
-        body: 'Custom ERP builds and ERP customisation on Odoo and ERPNext: modules, workflows, approvals, integrations, single sign-on and reports. I built Retail OS (point of sale, inventory, double-entry accounting) and customised Odoo 20 into a manufacturing-operations ERP with 31 custom addons and more than 300 tests, from the specification to OpenID Connect sign-in.',
+        body: 'Custom ERP builds and ERP customisation on Odoo and ERPNext: modules, workflows, approvals, integrations, single sign-on and reports. I built Retail OS (point of sale, inventory, double-entry accounting) and customised Odoo 20 into a manufacturing-operations ERP with 42 custom addons and more than 500 tests, from the specification to OpenID Connect sign-in.',
     },
     {
         title: 'Identity and security engineering',
@@ -152,7 +152,7 @@ export const production = [
         title: 'Identity platform',
         tag: 'Employer system, private',
         summary: 'Custom OpenID Connect single sign-on for the group\'s internal systems, with Active Directory integration, PKCE, an admin console and an app launcher. Back-channel logout ends a person\'s sessions in every connected app when they sign out or their account is deactivated. Licences are signed offline.',
-        facts: ['831 automated tests', 'Back-channel logout', 'Offline-signed licences', 'Signed releases, tamper watcher'],
+        facts: ['834 automated tests', 'Back-channel logout', 'Offline-signed licences', 'Signed releases, tamper watcher'],
     },
     {
         title: 'Document and records platform',
@@ -173,7 +173,7 @@ export const openSource = {
     summary: 'Four applications on one stack that show the same discipline in public. Retail OS enforces double-entry accounting with a deferred database trigger. JobPilot isolates tenants with row-level security and submits no job application until a person approves it. All four use OpenID Connect sign-in.',
     facts: ['NestJS 12, Drizzle', 'PostgreSQL 18', 'Next.js 16', 'OpenAPI contracts'],
     links: [
-        { label: 'Retail OS', note: 'point of sale and double-entry books', url: 'https://github.com/DawitBK/retail-os' },
+        { label: 'Retail OS', note: 'point of sale, double-entry books and forecasting', url: 'https://github.com/DawitBK/retail-os' },
         { label: 'JobPilot', note: 'multi-tenant job search', url: 'https://github.com/DawitBK/jobpilot' },
         { label: 'Martronics', note: 'e-commerce', url: 'https://github.com/DawitBK/martronics' },
         { label: 'Library Management', note: 'circulation and catalogue', url: 'https://github.com/DawitBK/library-management-system' },
@@ -184,7 +184,7 @@ export const demos = [
     { name: 'Identity portal', kind: 'Single sign-on', url: 'https://saas-portal-iota.vercel.app/sso/portal', note: 'The launcher every other demo signs in through.' },
     { name: 'Document management', kind: 'DMS', url: 'https://saas-dms.vercel.app/dms', note: 'Approvals, e-signing, retention and search.' },
     { name: 'Guest management', kind: 'GMS', url: 'https://saas-gms.vercel.app/gms', note: 'Visitors, approvals and door credentials.' },
-    { name: 'Retail OS', kind: 'Point of sale and accounting', url: 'https://saas-retail.vercel.app', note: 'Sales, stock and double-entry books.' },
+    { name: 'Retail OS', kind: 'Point of sale and accounting', url: 'https://saas-retail.vercel.app', note: 'Sales, stock, double-entry books and forecasts.' },
     { name: 'JobPilot', kind: 'Job search', url: 'https://saas-jobpilot.vercel.app', note: 'Matching and an application pipeline.' },
     { name: 'Martronics', kind: 'E-commerce', url: 'https://saas-martronics.vercel.app', note: 'An electronics storefront with checkout.' },
     { name: 'Library', kind: 'Library catalogue', url: 'https://saas-library.vercel.app', note: 'Public catalogue and staff desk.' },
@@ -215,7 +215,7 @@ export const experience = [
         points: [
             'Lead architecture and delivery for four internal platforms (identity, records, visitors and retail ERP), directing engineers and AI coding agents.',
             'Own the full lifecycle: requirements, design, build, verification, release and operator training, with preflight checks, signed releases and automatic rollback.',
-            'Built three of the platforms to a tested standard (831, 1,639 and 605 automated tests) and introduced independent code reviews, with every finding fixed.',
+            'Built three of the platforms to a tested standard (834, 1,639 and 605 automated tests) and introduced independent code reviews, with every finding fixed.',
             'Took the guest platform through QA and UAT to a live deployment on the company\'s own server, and trained the IT staff who run it.',
             'Write the requirements (BRD, FRS), technical design documents, executive reports and training material.',
         ],
