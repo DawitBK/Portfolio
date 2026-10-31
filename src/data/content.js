@@ -175,8 +175,8 @@ export const openSource = {
     links: [
         { label: 'Retail OS', note: 'point of sale, double-entry books and forecasting', url: 'https://github.com/DawitBK/retail-os' },
         { label: 'JobPilot', note: 'multi-tenant job search', url: 'https://github.com/DawitBK/jobpilot' },
-        { label: 'Martronics', note: 'e-commerce', url: 'https://github.com/DawitBK/martronics' },
-        { label: 'Library Management', note: 'circulation and catalogue', url: 'https://github.com/DawitBK/library-management-system' },
+        { label: 'Martronics', note: 'e-commerce', url: 'https://github.com/DawitBK/martronics/tree/next' },
+        { label: 'Library Management', note: 'circulation and catalogue', url: 'https://github.com/DawitBK/library-management-system/tree/next' },
     ],
 };
 
@@ -188,8 +188,6 @@ export const demos = [
     { name: 'JobPilot', kind: 'Job search', url: 'https://saas-jobpilot.vercel.app', note: 'Matching and an application pipeline.' },
     { name: 'Martronics', kind: 'E-commerce', url: 'https://saas-martronics.vercel.app', note: 'An electronics storefront with checkout.' },
     { name: 'Library', kind: 'Library catalogue', url: 'https://saas-library.vercel.app', note: 'Public catalogue and staff desk.' },
-    { name: 'Martronics, original', kind: 'First version', url: 'https://martronics.vercel.app', note: 'The storefront the rebuild replaces.' },
-    { name: 'Library, original', kind: 'First version', url: 'https://library-management-system-lyart-pi.vercel.app', note: 'The front end the rebuild replaces.' },
 ];
 
 // Public showcase repositories for the three platform editions. They hold the README, screenshots and architecture

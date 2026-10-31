@@ -9,18 +9,17 @@ import { demoAccess } from '../data/demoAccess';
 import { gateClick } from '../lib/demoGate';
 import { hostOf } from '../lib/text';
 
-const isOriginal = (d) => /first version/i.test(d.kind);
-
 const DemoCard = ({ demo, index }) => {
-    const original = isOriginal(demo);
+    // The portal is where every demo starts, so it takes the whole first row and the rest fill the grid evenly.
+    const start = demo.url === demoAccess.portal;
     return (
-        <Reveal as="li" delay={(index % 3) * 70} className="sm:max-lg:last:col-span-2">
+        <Reveal as="li" delay={(index % 3) * 70} className={start ? 'sm:col-span-2 lg:col-span-3' : ''}>
             <a
                 href={demo.url}
                 target="_blank"
                 rel="noreferrer"
                 onClick={gateClick(demo.url)}
-                className={`spot card group flex h-full flex-col clip transition duration-300 hover:-translate-y-1 hover:shadow-lift focus-visible:-translate-y-1 focus-visible:shadow-lift ${original ? 'border-dashed' : ''}`}
+                className="spot card group flex h-full flex-col clip transition duration-300 hover:-translate-y-1 hover:shadow-lift focus-visible:-translate-y-1 focus-visible:shadow-lift"
             >
                 <div className="flex items-center gap-3 border-b border-line bg-sunken/70 px-4 py-2.5">
                     <span aria-hidden="true" className="flex gap-1.5">
@@ -36,8 +35,7 @@ const DemoCard = ({ demo, index }) => {
                 <div className="flex flex-1 flex-col p-6">
                     <div className="flex items-center justify-between gap-3">
                         <p className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">{demo.kind}</p>
-                        {demo.url === demoAccess.portal && <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-2.5 py-1 font-mono text-[0.62rem] font-medium uppercase tracking-wider text-on-accent">Start here</span>}
-                        {original && <span className="rounded-full border border-dashed border-line px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wider text-muted">Original</span>}
+                        {start && <span className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-2.5 py-1 font-mono text-[0.62rem] font-medium uppercase tracking-wider text-on-accent">Start here</span>}
                     </div>
                     <h4 className="mt-4 font-serif text-[1.9rem] leading-[1.1]">{demo.name}</h4>
                     <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{demo.note}</p>

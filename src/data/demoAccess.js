@@ -15,7 +15,7 @@ export const demoAccess = {
         'Document system: system administrator',
         'Guest system: super administrator',
         'Retail OS: owner',
-        'JobPilot: member, with its own workspace',
+        'JobPilot: member (the app\'s only role)',
         'Martronics and Library: administrator',
     ],
     note: 'This is a shared public sandbox. Please leave the password as it is. If sign-in fails, the demo is offline or being reset; try again later.',
